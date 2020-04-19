@@ -22,12 +22,12 @@ class Address(models.Model):
 
 
 class Residence(models.Model):
-  short_name = models.CharField(max_length=30)
+  short_name = models.CharField(max_length=30, unique=True)
   # created_by = models.ForeignKey(User, related_name='residences', on_delete=models.DO_NOTHING)
-  address = models.ForeignKey(Address, related_name='residences', on_delete=models.CASCADE)
-  tenants = models.ManyToManyField(User, related_name='residences', blank=True)
+  address = models.ForeignKey(Address, related_name='residences', null=True, on_delete=models.CASCADE)
+  tenants = models.ManyToManyField(User, related_name='residences')
   admin_user = models.ForeignKey(User, related_name='residence', on_delete=models.CASCADE)
-  join_requests = models.ManyToManyField(User, related_name='new_residence', blank=True)
+  join_requests = models.ManyToManyField(User, related_name='new_residence')
 
 
   def __str__(self):

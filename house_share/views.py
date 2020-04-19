@@ -6,12 +6,14 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from rest_framework.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_422_UNPROCESSABLE_ENTITY, HTTP_204_NO_CONTENT
 
 from .models import Address, Residence, Expense, Split, Move, Room
-from .serializers import AddressSerializer, ResidenceSerializer, PopulatedAddressSerializer, PopulatedResidenceSerializer, ExpenseSerializer, PopulatedExpenseSerializer, SplitSerializer, PopulatedSplitSerializer, MoveSerializer, PopulatedMoveSerializer, RoomSerializer, PopulatedRoomSerializer
+from django.contrib.auth import get_user_model
+User = get_user_model()
+from .serializers import AddressSerializer, ResidenceSerializer, PopulatedAddressSerializer, PopulatedResidenceSerializer, ExpenseSerializer, PopulatedExpenseSerializer, SplitSerializer, PopulatedSplitSerializer, MoveSerializer, PopulatedMoveSerializer, RoomSerializer, PopulatedRoomSerializer, UserSerializer, PopulatedUserSerializer
 
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
 
-# from rest_framework.permissions import IsAuthenticated # Import the is authenticated
+from rest_framework.permissions import IsAuthenticated # Import the is authenticated
 
 class isOwnerOrReadOnly(BasePermission):
 
@@ -78,13 +80,27 @@ class ResidenceListView(ListCreateAPIView):
       serializer = PopulatedResidenceSerializer(residences, many=True)
       return Response(serializer.data)
 
+   
     def post(self, request):
+
+      request.data['admin_user'] = request.user.id
+      request.data['tenants'] = [request.user.id]
       serializer = ResidenceSerializer(data=request.data)
+      
       if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=HTTP_201_CREATED)
 
       return Response(serializer.data, status=HTTP_422_UNPROCESSABLE_ENTITY)
+    
+    def put(self, request):
+      short_name = request.data['short_name']
+      residence = Residence.objects.get(short_name=short_name)
+      # request.data['tenants'].push(request.user.id)
+      if residence.join_requests.add(request.user.id):
+        return Response(residence, status=HTTP_202_ACCEPTED)
+
+      return Response({ 'error': 'This account does not exist' })
 
 
 class ResidenceDetailView(RetrieveUpdateDestroyAPIView):
@@ -290,3 +306,22 @@ class RoomDetailView(RetrieveUpdateDestroyAPIView):
     room = Move.objects.get(pk=pk)
     room.delete()
     return Response(status=HTTP_204_NO_CONTENT)
+
+
+
+
+class UserProfileDetailView(RetrieveUpdateDestroyAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+
+  permission_classes = (IsAuthenticated),
+
+  def get(self, request):
+    user = request.user
+    serializer = PopulatedUserSerializer(user)
+    return Response(serializer.data)
+
+
+
+
+

@@ -10,6 +10,8 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Navbar from './components/common/Navbar'
 import Home from './components/Home'
+import AddProfileImage from './components/AddProfileImage'
+import CreateResidence from './components/CreateResidence'
 
 
 const App = () => (
@@ -20,6 +22,9 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route exact path='/register' component={Register} />
       <Route exact path='/login' component={Login} />
+      <Route exact path='/addProfileImage' component={AddProfileImage} />
+      <Route exact path='/createResidence' component={CreateResidence} />
+
       {/* <Route exact path='/register/usertype' component={UserType} /> */}
 
     </Switch>

@@ -28,14 +28,6 @@ class Register extends React.Component {
     console.log(this.state.data)
   }
 
-  // handleImageChange(image) {
-  //   console.log(image)
-  //   const form_data = new FormData()
-  //   form_data.append('image', image.target.files[0], image.target.files[0].name)
-  //   const data = { ...this.state.data, image: form_data }
-  //   this.setState({ data })
-
-  // }
 
   handleSubmit(event) {
     event.preventDefault()

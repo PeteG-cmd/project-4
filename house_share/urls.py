@@ -1,6 +1,6 @@
 
 from django.urls import path
-from .views import AddressListView, AddressDetailView, ResidenceListView, ResidenceDetailView, ExpenseListView, ExpenseDetailView, SplitListView, SplitDetailView, MoveListView, MoveDetailView, RoomListView, RoomDetailView
+from .views import AddressListView, AddressDetailView, ResidenceListView, ResidenceDetailView, ExpenseListView, ExpenseDetailView, SplitListView, SplitDetailView, MoveListView, MoveDetailView, RoomListView, RoomDetailView, UserProfileDetailView
 
 urlpatterns = [
     path('address/', AddressListView.as_view()),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('move/<int:pk>/', MoveDetailView.as_view()),
     path('room/', RoomListView.as_view()),
     path('room/<int:pk>/', RoomDetailView.as_view()),
+    path('userprofile/', UserProfileDetailView.as_view())
 ]

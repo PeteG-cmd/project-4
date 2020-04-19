@@ -15,7 +15,7 @@ class AddressSerializer(serializers.ModelSerializer):
 class ResidenceSerializer(serializers.ModelSerializer):
   class Meta:
     model = Residence
-    fields = ('id', 'short_name', 'address', 'tenants', 'moves', 'admin_user', 'rooms', 'join_requests')
+    fields = ('id', 'short_name', 'address', 'tenants', 'admin_user', 'join_requests')
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
@@ -45,7 +45,13 @@ class RoomSerializer(serializers.ModelSerializer):
 
 
 
+class PopulatedExpensesSplitSerializer(serializers.ModelSerializer):
 
+  splits = SplitSerializer(many=True)
+
+  class Meta:
+    model = Expense
+    fields = ('id', 'company_name', 'description', 'expense_dated', 'date_from', 'date_to', 'amount', 'image', 'residence', 'users_liable', 'splits', 'admin_user')
 
 
 class PopulatedAddressSerializer(serializers.ModelSerializer):
@@ -65,19 +71,22 @@ class PopulatedResidenceSerializer(ResidenceSerializer):
   admin_user = UserSerializer()
   rooms = RoomSerializer(many = True)
   join_requests = UserSerializer(many=True)
+  expenses = PopulatedExpensesSplitSerializer(many=True)
  
   class Meta:
     model = Residence
-    fields = ('id', 'short_name', 'address', 'tenants', 'moves', 'admin_user', 'rooms', 'join_requests')
+    fields = ('id', 'short_name', 'address', 'tenants', 'moves', 'admin_user', 'rooms', 'join_requests', 'expenses')
 
 
 class PopulatedUserSerializer(serializers.ModelSerializer):
 
-  join_requests = ResidenceSerializer(many=True)
+  residences = PopulatedResidenceSerializer(many=True)
+  new_residence = PopulatedResidenceSerializer(many=True)
+  # expenses = ExpenseSerializer(many=True)
 
   class Meta:
     model = User
-    fields = ('id', 'username', 'email', 'first_name', 'second_name', 'image', 'join_requests')
+    fields = ('id', 'username', 'email', 'first_name', 'second_name', 'image', 'residences', 'new_residence')
 
 
 class PopulatedExpenseSerializer(ExpenseSerializer):

@@ -137,7 +137,10 @@ const RegistrationForm = ({ handleSubmit, handleChange, handleImageChange, error
       id="image"
       accept="image/png, image/jpeg" onChange={(image) => handleImageChange(image)} /> */}
 
-    <button className="button is-success">
+    <button
+      className="button is-success"
+      formEncType='multipart/form-data'
+    >
       Register
     </button>
   </form>
