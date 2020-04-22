@@ -30,3 +30,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('username', 'email', 'password', 'password_confirmation','first_name', 'second_name', 'image')
+
+
+class UserImageSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = User
+    fields = ('image',)

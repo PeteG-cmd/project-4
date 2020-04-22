@@ -23,9 +23,9 @@ class Address(models.Model):
 
 class Residence(models.Model):
   short_name = models.CharField(max_length=30, unique=True)
-  # created_by = models.ForeignKey(User, related_name='residences', on_delete=models.DO_NOTHING)
   address = models.ForeignKey(Address, related_name='residences', null=True, on_delete=models.CASCADE)
   tenants = models.ManyToManyField(User, related_name='residences')
+  past_tenants = models.ManyToManyField(User, related_name='past_residences')
   admin_user = models.ForeignKey(User, related_name='residence', on_delete=models.CASCADE)
   join_requests = models.ManyToManyField(User, related_name='new_residence')
 
@@ -39,8 +39,8 @@ class Expense(models.Model):
   company_name = models.CharField(max_length=40)
   description = models.CharField(max_length=200, blank=True)
   expense_dated = models.DateField()
-  date_from = models.DateField(blank=True)
-  date_to = models.DateField(blank=True)
+  date_from = models.DateField(null=True)
+  date_to = models.DateField(null=True)
   amount = models.FloatField()
   image = models.ImageField(upload_to='bill_image', null=True)
   residence = models.ForeignKey(Residence, related_name='expenses', on_delete=models.CASCADE)
@@ -53,7 +53,7 @@ class Expense(models.Model):
 
 class Split(models.Model):
   expense = models.ForeignKey(Expense, related_name='splits', on_delete=models.CASCADE)
-  residence = models.ForeignKey(Residence, related_name='splits', on_delete=models.CASCADE)
+  # residence = models.ForeignKey(Residence, related_name='splits', on_delete=models.CASCADE)
   user = models.ForeignKey(User, related_name='splits', on_delete=models.CASCADE)
   percentage_to_pay = models.FloatField()
   paid_flag = models.BooleanField()

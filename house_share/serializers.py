@@ -15,7 +15,7 @@ class AddressSerializer(serializers.ModelSerializer):
 class ResidenceSerializer(serializers.ModelSerializer):
   class Meta:
     model = Residence
-    fields = ('id', 'short_name', 'address', 'tenants', 'admin_user', 'join_requests')
+    fields = ('id', 'short_name', 'address', 'tenants', 'admin_user')
 
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
@@ -25,12 +25,12 @@ class UserSerializer(serializers.ModelSerializer):
 class ExpenseSerializer(serializers.ModelSerializer):
   class Meta:
     model = Expense
-    fields = ('id', 'company_name', 'description', 'expense_dated', 'date_from', 'date_to', 'amount', 'image', 'residence', 'users_liable', 'admin_user')
+    fields = ('id', 'company_name', 'description', 'expense_dated', 'date_from', 'date_to', 'amount', 'image', 'residence', 'admin_user')
 
 class SplitSerializer(serializers.ModelSerializer):
   class Meta:
     model = Split
-    fields = ('id', 'expense', 'residence', 'user', 'percentage_to_pay', 'paid_flag')
+    fields = ('id', 'expense', 'user', 'percentage_to_pay', 'paid_flag', 'admin_user')
 
 class MoveSerializer(serializers.ModelSerializer):
   class Meta:

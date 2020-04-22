@@ -61,7 +61,7 @@ class CreateResidence extends React.Component {
                     name="short_name"
                     placeholder="Enter House Name..."
                     className="input"
-                    vlaue={this.state.short_name}
+                    value={this.state.short_name}
                   />
                 </div>
               </div>
@@ -90,7 +90,7 @@ class CreateResidence extends React.Component {
                     name="short_name"
                     placeholder="Enter House Name..."
                     className="input"
-                    vlaue={this.state.short_name}
+                    value={this.state.short_name}
                   />
                 </div>
               </div>

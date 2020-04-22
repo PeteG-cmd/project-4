@@ -71,6 +71,30 @@ class AddressDetailView(RetrieveUpdateDestroyAPIView):
       return Response(status=HTTP_204_NO_CONTENT)
 
 
+class ResidenceUsersControll(ListCreateAPIView):
+    queryset = Residence.objects.all()
+    serializer_class = ResidenceSerializer
+
+    def put(self, request):
+      print(request.data)
+      if request.data['event'] == 'accept':
+        residence = Residence.objects.get(id=int(request.data['residence_id']))
+        residence.tenants.add(User.objects.get(id=request.data['user_id']))
+        residence.join_requests.remove(User.objects.get(id=request.data['user_id']))
+        serializer_f = PopulatedResidenceSerializer(residence)
+
+
+
+
+        return Response(serializer_f.data, status=HTTP_202_ACCEPTED)
+      
+      elif request.data['event'] == 'decline':
+          residence = Residence.objects.get(id=int(request.data['residence_id']))
+          residence.join_requests.remove(User.objects.get(id=request.data['user_id']))
+          serializer = PopulatedResidenceSerializer(residence)
+          return Response(serializer.data, status=HTTP_202_ACCEPTED)
+
+
 class ResidenceListView(ListCreateAPIView):
     queryset = Residence.objects.all()
     serializer_class = ResidenceSerializer
@@ -84,14 +108,16 @@ class ResidenceListView(ListCreateAPIView):
     def post(self, request):
 
       request.data['admin_user'] = request.user.id
-      request.data['tenants'] = [request.user.id]
+      request.data['tenants'] = [request.user.id,]
+      print(request.data)
+
       serializer = ResidenceSerializer(data=request.data)
       
       if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=HTTP_201_CREATED)
 
-      return Response(serializer.data, status=HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
     
     def put(self, request):
       short_name = request.data['short_name']
@@ -136,19 +162,34 @@ class ExpenseListView(ListCreateAPIView):
     def get(self, request):
       print(request)
       expenses = Expense.objects.all()
+      
       # self.check_object_permissions(request) #Check user is logged in
       serializer = PopulatedExpenseSerializer(expenses, many=True)
       return Response(serializer.data)
 
     def post(self, request):
-      print(request)
-      # request.data['resisence'] = request.user.residence.id
-      serializer = ExpenseSerializer(data=request.data)
-      if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=HTTP_201_CREATED)
+      request.data['admin_user'] = request.user.id
+      if request.data['splits']:
+        f_serializer = ExpenseSerializer(data=request.data)
+        if f_serializer.is_valid():
+          f_serializer.save()
+          # return Response(serializer.data, status=HTTP_201_CREATED)
+          splits = request.data['splits']
+          print(splits)
+          new_data = []
+          for split in splits:
+          
+            split['expense'] = f_serializer.data['id']
+            split['admin_user'] = f_serializer.data['admin_user']
 
-      return Response(serializer.data, status=HTTP_422_UNPROCESSABLE_ENTITY)
+            serializer = SplitSerializer(data=split)
+            if serializer.is_valid():
+              serializer.save()
+
+              new_data.append(serializer.data)
+          return Response({ 'Split': new_data, 'Expense': f_serializer.data }, status=HTTP_201_CREATED)
+        return Response(f_serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response({'message': 'There must be at least one split attributed to this Expense' }, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class ExpenseDetailView(RetrieveUpdateDestroyAPIView):

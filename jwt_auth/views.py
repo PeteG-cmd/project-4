@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.conf import settings
 import jwt
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserImageSerializer
 
 class RegisterView(CreateAPIView):
 
@@ -56,23 +56,14 @@ class LoginView(APIView):
 class UpdateProfileViev(RetrieveUpdateDestroyAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = UserImageSerializer
 
     def put(self, request):
       user = request.user
       print(user.password)
       print(request.data)
-     
-      request.data['username'] = request.user.username
-      request.data['first_name'] = request.user.first_name
-      request.data['second_name'] = request.user.second_name
-      request.data['password'] = request.user.password
-      request.data['password_confirmation'] = request.user.password
-      
-     
       print(request.data['image'])
-      print(request.data)
-      serializer = UserSerializer(user, data=request.data)
+      serializer = UserImageSerializer(user, data=request.data)
       if serializer.is_valid():
         serializer.save(update_fields=['image'])
         return Response(serializer.data, status=HTTP_202_ACCEPTED)
