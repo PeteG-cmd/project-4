@@ -60,9 +60,6 @@ class UpdateProfileViev(RetrieveUpdateDestroyAPIView):
 
     def put(self, request):
       user = request.user
-      print(user.password)
-      print(request.data)
-      print(request.data['image'])
       serializer = UserImageSerializer(user, data=request.data)
       if serializer.is_valid():
         serializer.save(update_fields=['image'])

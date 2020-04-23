@@ -4,7 +4,11 @@ import axios from 'axios'
 import auth from '../lib/auth'
 import { Link } from 'react-router-dom'
 
+import Moment, { now } from 'moment'
+import Spinner from './common/Spinner'
+
 import JoinRequest from './JoinRequest'
+
 
 
 export default class Home extends React.Component {
@@ -22,7 +26,10 @@ export default class Home extends React.Component {
       .then(res => {
         this.setState({ userProfile: res.data })
       })
-      .catch(err => this.setState({ error: err.response.data.message }))
+      .catch(err => {
+        this.setState({ error: err.response.data.message })
+        this.props.history.push('/houseShareWelcome')
+      })
   }
 
   handleUpdate(event) {
@@ -33,12 +40,37 @@ export default class Home extends React.Component {
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
+  sortByDate(splits) {
+    const newSplits = splits.map(split => {
+      split.expense_dated = new Date(split.expense_dated)
+      return split
+    })
+    const sortedSplits = newSplits.sort((a, b) => b.expense_dated - a.expense_dated)
+    return sortedSplits
+  }
+
+  calculateDashboard() {
+    if (!this.state.userProfile.residences[0]) return
+    let openExpenses = 0
+    let settledExpenses = 0
+    this.state.userProfile.residences[0].expenses.map(expense => {
+      expense.splits.map(split => {
+        if (split.user.id === this.state.userProfile.id && split.paid_flag === true) {
+          settledExpenses += split.percentage_to_pay
+        } else if (split.user.id === this.state.userProfile.id && split.paid_flag === false) {
+          openExpenses += split.percentage_to_pay
+        }
+      })
+    })
+    return { settledExpenses: settledExpenses, openExpenses: openExpenses }
+
+  }
 
   render() {
-    const user = this.state.userProfile
-    // const residence = this.state.userProfile.residences[0]
 
-    if (!this.state.userProfile) return <h1>WAITING FOR USER</h1>
+    if (!this.state.userProfile) return <h1>Waiting</h1>
+    const user = this.state.userProfile
+    const dashData = this.calculateDashboard()
 
     console.log(this.state.userProfile)
 
@@ -46,9 +78,9 @@ export default class Home extends React.Component {
 
       <div className="columns">
         <div className="column">
-          {user.residences[0] && user.id === user.residences[0].admin_user.id && <div className="box ">
+          {user.residences[0] && user.id === user.residences[0].admin_user.id && <div className="box has-text-centered growHeight">
 
-            <h1 className="title">Users Awaiting Approval</h1>
+            <h1 className="subtitle">Users Awaiting Approval</h1>
             <JoinRequest
               join_requests={user.residences[0].join_requests}
               residenceId={user.residences[0].id}
@@ -61,37 +93,62 @@ export default class Home extends React.Component {
         <div className="column">
           <div className="box has-text-centered">
             <h1 className="title">Home</h1>
-            <div className='circleBox'>
-              {!user.residences[0] && !user.new_residence[0] && <p><Link to={'/createResidence'}>Click to Add/Join House</Link></p>}
-              {user.residences[0] && <p>House, click to see info</p>}
-              {user.new_residence[0] && <p>Awaiting approval from Admin</p>}
+            <div>
+              <div className='circleBox'>
+                <p className="image is-100x100">
+                  <img className='is-rounded' src={'http://localhost:4000/media/assets/round-logo-1.jpg'}></img>
+                </p>
+              </div>
+              <div>
+                {!user.residences[0] && !user.new_residence[0] && <p><Link to={'/createResidence'}>Click the house to get started...</Link></p>}
+                {/* {user.residences[0] && <p>House, click to see info</p>} */}
+                {user.new_residence[0] && <p>Awaiting approval from Admin</p>}
+              </div>
             </div>
             <div className="lineBox"></div>
-            <div className='circleBox'>
-              {!user.image && <p><Link to={'/addProfileImage'}>Click to add profile image</Link></p>}
-              {user.image && <p className="image is-64x64">
-                <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>
-              </p>}
+            <div>
+              <div className='circleBox'>
+                <Link to={'/addProfileImage'}>
+                  <p className="image is-100x100">
+                    {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
+                    {!user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
+                  </p>
+                </Link>
+              </div>
+              <div>
+                Click to update...
+              </div>
             </div>
           </div>
         </div>
-        <div className="column"></div>
-        {/* {user.id === user.residences[0].admin_user.id && <div className="column"></div>} */}
+        <div className="column">
+          <div className="box has-text-centered growHeight dashboard">
+            <h1 className="subtitle">Dashboard</h1>
+            <p>Current balance: £</p>
+            {user.residences[0] && <p>Open Expenses: £{dashData.openExpenses.toFixed(2)}</p>}
+            {user.residences[0] && <p>Settled Expenses: £{dashData.settledExpenses.toFixed(2)}</p>}
+            {!user.residences[0] && user.splits[0] && <button className='button is-warning is-full-width'>See Expenses from previous House</button>}
+
+            <p></p>
+          </div>
+        </div>
       </div>
 
 
       <div className="columns is-multiline is-mobile">
         {user.residences[0] && user.residences[0].tenants.map((tenant, index) => {
           return <div key={index} className="column is-3-desktop is-4-tablet is-half-mobile has-text-centered">
-            <div className="box">
+            <Link to={{ pathname: '/viewResidenceUser', state: tenant }}><div className="box">
               <p>{tenant.username}</p>
               <div className='circleBox'>
-                {!tenant.image && <p><Link to={'/'}>No image</Link></p>}
-                {tenant.image && <p className="image is-64x64">
-                  <img src={`http://localhost:4000${tenant.image}`}></img>
+                {!tenant.image && <p className="image is-100x100">
+                  <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
+                </p>}
+                {tenant.image && <p className="image is-100x100">
+                  <img className='is-rounded' src={`http://localhost:4000${tenant.image}`}></img>
                 </p>}
               </div>
-            </div>
+            </div></Link>
 
           </div>
         })}
@@ -101,22 +158,23 @@ export default class Home extends React.Component {
 
       <div className="columns">
         <div className="column is-half">
-          <div className="box">
+          {user.residences[0] && <div className="box">
 
             <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
-            <div className="box">
-              <p><Link to={'/expense/new'}>Add an new expense</Link></p>
-            </div>
+            <Link to={'/expense/new'}><div className="box has-text-centered">
+              <button className='button is-fullwidth is-link'>Add and new expense</button>
+            </div></Link>
 
-            {user.residences[0] && user.residences[0].expenses.map((expense, index) => {
-              return <div key={index} className="column is-12-desktop expenseRowDisplay">
+            {user.residences[0] && this.sortByDate(user.residences[0].expenses).map((expense, index) => {
+              return <Link key={index} to={`/viewExpense/${expense.id}`}><div key={index} className="column is-12-desktop expenseRowDisplay">
                 <p>{expense.company_name}</p>
-                <p>{expense.expense_dated}</p>
+                <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
                 <p>£{expense.amount}</p>
 
-              </div>
+              </div></Link>
             })}
-          </div>
+
+          </div>}
         </div>
       </div>
     </div>

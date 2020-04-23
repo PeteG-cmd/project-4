@@ -13,7 +13,7 @@ class Navbar extends React.Component {
 
   handleLogout() {
     auth.logout()
-    this.props.history.push('/')
+    this.props.history.push('/HouseShareWelcome')
   }
 
   render() {
@@ -21,8 +21,9 @@ class Navbar extends React.Component {
     return <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          Home 
+          <img src="http://localhost:4000/media/assets/TitlesArtboard1.jpg" width="112" height="28" />
         </a>
+        
 
         <a role="button"
           className={`navbar-burger burger ${this.state.navMobileOpen ? 'is-active' : ''}`}
@@ -99,4 +100,4 @@ class Navbar extends React.Component {
     </nav>
   }
 }
-export default Navbar
+export default withRouter(Navbar)

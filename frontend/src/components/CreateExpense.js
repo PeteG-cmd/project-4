@@ -20,6 +20,8 @@ class CreateExpense extends React.Component {
       date_to: null,
       formatDateTo: null,
       amount: 0,
+      payment_due_date: null,
+      formatPaymentDueDate: null,
       image: null,
       residence: null,
       userProfile: null,
@@ -32,6 +34,7 @@ class CreateExpense extends React.Component {
   componentDidMount() {
     axios.get('/api/userprofile', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
+        console.log(res)
         this.setState({ userProfile: res.data, residence: res.data.residences[0].id })
         setTimeout(() => {
           const splits = this.state.splits
@@ -62,11 +65,11 @@ class CreateExpense extends React.Component {
     console.log(this.state.amount)
     if (!(parseFloat(totalSplit.toFixed(2)) === parseFloat(this.state.amount))) return this.setState({ errors: { 'split': [`The total of all the splits must equal the value of the expense. Currently there is a difference of £${(parseFloat(totalSplit) - parseFloat(this.state.amount)).toFixed(2)}`] } })
     if (parseFloat(this.state.amount) === 0) return this.setState({ errors: { 'amount': [`The amount must be at least £${0.01 * this.state.userProfile.residences[0].tenants.length}`] } })
-   
+
     axios.post('/api/expense/', this.state, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res)
-        this.props.history.push('/')
+        this.props.history.push(`/addBillImage/${res.data.Expense.id}`)
       })
       .catch(err => this.setState({ errors: err.response.data }))
     // 'Content-Type': 'multipart/form-data',
@@ -74,7 +77,6 @@ class CreateExpense extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target
-    // const data = { ...this.state.data, [name]: value }
     this.setState({ [name]: value })
     console.log(this.state)
     if (name === 'amount') {
@@ -106,7 +108,7 @@ class CreateExpense extends React.Component {
       if (split.user === this.state.userProfile.id) {
         split.percentage_to_pay = parseFloat(split.percentage_to_pay.toFixed(2)) + (parseFloat(correction.toFixed(2)))
         split.percentage_to_pay = split.percentage_to_pay.toFixed(2)
-      } 
+      }
       return split
     })
     this.setState({ splits })
@@ -120,8 +122,16 @@ class CreateExpense extends React.Component {
 
   handleDateChange(name, value) {
     console.log(value)
-    if (value === null) {
+    const x = document.getElementsByClassName('datebutton')
+    if (value === null && (name === 'date_to' || name === 'date_from')) {
       this.setState({ formatDateFrom: null, formatDateTo: null, date_to: null, date_from: null })
+      for (let i = 0; i < x.length; i++) {
+        x[i].disabled = true
+      }
+      return
+    }
+    if (value === null && name === 'payment_due_date') {
+      this.setState({ formatPaymentDueDate: null, payment_due_date: null })
       return
     }
     const data = Moment(value).format('YYYY-MM-DD')
@@ -131,7 +141,16 @@ class CreateExpense extends React.Component {
       this.setState({ formatDateFrom: newData })
     } else if (name === 'date_to') {
       this.setState({ formatDateTo: newData })
+    } else if (name === 'payment_due_date') {
+      this.setState({ formatPaymentDueDate: newData })
     }
+    setTimeout(() => {
+      if (this.state.date_from !== null && this.state.date_to !== null) {
+        for (let i = 0; i < x.length; i++) {
+          x[i].disabled = false
+        }
+      }
+    }, 100)
   }
 
   customClicked(event) {
@@ -152,8 +171,24 @@ class CreateExpense extends React.Component {
     this.handleSplit(this.state.amount)
   }
 
-  byDateClicked(event) {
-    event.preventDefault()
+  byDateClicked() {
+    event.preventDefault(event)
+    const expenseLengthDays = Moment([this.state.formatDateTo]).diff(Moment([this.state.formatDateFrom]), 'days')
+    console.log(expenseLengthDays)
+    // this.state.userProfile.residences[0].moves.map(move => {
+    //   moved_in = Moment(move.moved_in)
+    // })
+  }
+
+  expenseNameGrouping(event) {
+    const { name, value } = event.target
+    this.state.userProfile.residences[0].expenses.map(expense => {
+      if (expense.company_name === value) {
+        alert('An expense with this name already exists, would you like to group these togeter? The details of the previous expense are XXXXXX')
+      }
+    })
+
+
   }
 
 
@@ -166,16 +201,17 @@ class CreateExpense extends React.Component {
         <div className="box has-text-centered">
           <div className="columns is-multiline">
             <div className="column is-two-thirds">
-              <div className="box has-text-centered">
+              <div className="box has-text-centered growHeight">
                 <h1 className="title">Add a new expense</h1>
 
 
                 <div className="field">
                   <label className="label">
-                    Company Name:
+                    Expense Name:
                   </label>
                   <input
                     onChange={(event) => this.handleChange(event)}
+                    onBlur={(event) => this.expenseNameGrouping(event)}
                     type="text"
                     name="company_name"
                     placeholder="Enter Company Name..."
@@ -260,7 +296,7 @@ class CreateExpense extends React.Component {
 
                 <div className="field">
                   <label className="label">
-                    Amount:
+                    Amount (£):
                   </label>
                   <input
                     onChange={(event) => this.handleChange(event)}
@@ -278,6 +314,22 @@ class CreateExpense extends React.Component {
 
                 <div className="field">
                   <label className="label">
+                    Payment Due Date:
+                  </label>
+                  <DatePicker
+                    onChange={(value) => this.handleDateChange('payment_due_date', value)}
+                    value={this.state.formatPaymentDueDate}
+                  />
+                  {errors.payment_due_date && <small className="help is-danger">
+                    {errors.payment_due_date[0]}
+                  </small>}
+                </div>
+
+
+
+
+                {/* <div className="field">
+                  <label className="label">
                     Upload Image:
                   </label>
                   <input type="file"
@@ -289,19 +341,19 @@ class CreateExpense extends React.Component {
                   {errors.image && <small className="help is-danger">
                     {errors.image[0]}
                   </small>}
-                </div>
+                </div> */}
               </div>
             </div>
 
             <div className="column is-one-third">
-              <div className="box has-text-centered">
+              <div className="box has-text-centered growHeight">
                 <h1 className="title">How shoult this expense be split?</h1>
 
                 <button className='button' onClick={(event) => this.evenlyClicked(event)}>Evenly</button>
                 <button className='button' onClick={(event) => this.customClicked(event)}>Custom</button>
                 <button
                   disabled
-                  className='button tooltip'
+                  className='button tooltip datebutton'
                   onClick={(event) => this.byDateClicked(event)}>
                   By Date<span className="tooltiptext">To Split this by date, you must enter the 'date from' and 'date to' for the related expense</span></button>
 
@@ -334,7 +386,7 @@ class CreateExpense extends React.Component {
 
 
             </div>
-            <div className="box has-tex-centered">
+            <div className="box has-tex-centered growWidth">
               <div>
                 <button className="button is-success">Add Expense</button>
               </div>

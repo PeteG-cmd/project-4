@@ -23,7 +23,7 @@ class JoinRequest extends React.Component {
     axios.put('/api/residence/users/', { user_id: userId, event: event.target.value, residence_id: this.state.residenceId }, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         this.props.handleUpdate(event)
-        this.setState({ join_requests: res.data.join_requests })
+        this.setState({ join_requests: res.data.join_request.join_requests })
       })
 
   }
@@ -34,13 +34,15 @@ class JoinRequest extends React.Component {
     const join_requests = this.state.join_requests
     return <>
       {join_requests.map((request, index) => {
-        return <div key={index}>
+        return <div key={index} className='joinRequestRow'>
           <p>{request.first_name} {request.second_name}</p>
-          <figure className='image is-24x24'>
-            <img src={`http://localhost:4000${request.image}`}></img>
-          </figure>
-          <button className='button is-small is-rounded is-success' value='accept' onClick={(event) => this.handleRequest(request.id, event)}>Accept</button>
-          <button className='button is-small is-rounded is-danger' value='decline' onClick={(event) => this.handleRequest(request.id, event)}>Decline</button>
+          <div className='imageDiv50'>
+            <figure className='image is-32x32'>
+              <img src={`http://localhost:4000${request.image}`}></img>
+            </figure>
+          </div>
+          <button className='button is-small is-success' value='accept' onClick={(event) => this.handleRequest(request.id, event)}>Accept</button>
+          <button className='button is-small is-danger' value='decline' onClick={(event) => this.handleRequest(request.id, event)}>Decline</button>
 
 
         </div>

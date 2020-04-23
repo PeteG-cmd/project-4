@@ -10,7 +10,8 @@ class ProfileImage extends React.Component {
     super()
 
     this.state = {
-      image: null
+      image: null,
+      imagePreview: null
     }
   }
 
@@ -29,29 +30,48 @@ class ProfileImage extends React.Component {
     console.log(image.target.files[0])
     const formData = new FormData()
     formData.append('image', image.target.files[0], image.target.files[0].name)
-    this.setState({ image: formData })
+    this.setState({ image: formData, imagePreview: URL.createObjectURL(event.target.files[0])
+    })
 
   }
 
 
   render() {
-    return <form
+    return <div className="columns">
+      <div className="column is-one-quarter is-offset-one-third">
+        <div className="box has-text-centered topBorder">
 
-      className="form"
-      onSubmit={(event) => this.handleSubmit(event)}
-      encType='mutipart/form-data'
-    >
+          <div className='circleBox'>
+            {!this.state.imagePreview && <p className="image is-100x100">
+              <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
+            </p>}
+            {this.state.imagePreview && <p className="image is-100x100">
+              <img className='is-rounded' src={this.state.imagePreview}></img>
+            </p>}
+          </div>
 
-      <input type="file"
-        id="image"
-        name='image'
-        accept="image/png, image/jpeg" onChange={(image) => this.handleImageChange(image)} />
+          <form
 
-      <button className="button is-success">
-        Upload Image
-      </button>
+            className="form"
+            onSubmit={(event) => this.handleSubmit(event)}
+            encType='mutipart/form-data'
+          >
 
-    </form>
+            <input type="file"
+              id="image"
+              name='image'
+              accept="image/png, image/jpeg" onChange={(image) => this.handleImageChange(image)} />
+
+            <button className="button is-success">
+              Upload Image
+          </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+
   }
 }
 

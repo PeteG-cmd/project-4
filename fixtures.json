@@ -1,0 +1,2185 @@
+[
+{
+  "model": "house_share.address",
+  "pk": 1,
+  "fields": {
+    "house_name": "63",
+    "house_number": 63,
+    "street": "HIGH Street",
+    "street_two": "dcsdx",
+    "town": "Amersham",
+    "city": "Amersham",
+    "postcode": "HP70DT",
+    "country": "UK"
+  }
+},
+{
+  "model": "house_share.address",
+  "pk": 2,
+  "fields": {
+    "house_name": "Big Building",
+    "house_number": 827,
+    "street": "London Road",
+    "street_two": "London road South",
+    "town": "London",
+    "city": "London",
+    "postcode": "W17HG",
+    "country": "UK"
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 1,
+  "fields": {
+    "short_name": "The Flat",
+    "address": 1,
+    "admin_user": 1,
+    "tenants": [
+      1,
+      2,
+      18,
+      19,
+      20,
+      28,
+      29,
+      3,
+      12
+    ],
+    "past_tenants": [
+      26
+    ],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 2,
+  "fields": {
+    "short_name": "GA",
+    "address": 2,
+    "admin_user": 1,
+    "tenants": [],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 9,
+  "fields": {
+    "short_name": "aaaaa",
+    "address": null,
+    "admin_user": 15,
+    "tenants": [],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 10,
+  "fields": {
+    "short_name": "xxxxx",
+    "address": null,
+    "admin_user": 15,
+    "tenants": [],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 11,
+  "fields": {
+    "short_name": "qq",
+    "address": null,
+    "admin_user": 15,
+    "tenants": [
+      15,
+      18
+    ],
+    "past_tenants": [],
+    "join_requests": [
+      19
+    ]
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 12,
+  "fields": {
+    "short_name": "sssss",
+    "address": null,
+    "admin_user": 16,
+    "tenants": [
+      16
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 13,
+  "fields": {
+    "short_name": "The new new",
+    "address": null,
+    "admin_user": 21,
+    "tenants": [
+      21
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 14,
+  "fields": {
+    "short_name": "bbb",
+    "address": null,
+    "admin_user": 23,
+    "tenants": [
+      23
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 15,
+  "fields": {
+    "short_name": "mr new flat",
+    "address": null,
+    "admin_user": 24,
+    "tenants": [
+      24
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 16,
+  "fields": {
+    "short_name": "newnewnew",
+    "address": null,
+    "admin_user": 29,
+    "tenants": [
+      29
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.residence",
+  "pk": 17,
+  "fields": {
+    "short_name": "nnnnn",
+    "address": null,
+    "admin_user": 29,
+    "tenants": [
+      29
+    ],
+    "past_tenants": [],
+    "join_requests": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 5,
+  "fields": {
+    "company_name": "Affinity Water",
+    "description": "Water Bill",
+    "expense_dated": "2020-04-17",
+    "date_from": "2020-04-17",
+    "date_to": "2020-04-24",
+    "amount": 23.43,
+    "image": "bill_image/Peter-2678-130_L7dG8OJ.jpg",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 6,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-18",
+    "amount": 22.22,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 7,
+  "fields": {
+    "company_name": "Bulb Energy",
+    "description": "s",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-11",
+    "amount": 22.22,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 8,
+  "fields": {
+    "company_name": "dxsaz",
+    "description": "saxsa",
+    "expense_dated": "2020-04-10",
+    "date_from": "2020-04-24",
+    "date_to": "2020-04-11",
+    "amount": 22.34,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 9,
+  "fields": {
+    "company_name": "asdasDAD",
+    "description": "saxsa",
+    "expense_dated": "2020-04-09",
+    "date_from": "2020-04-24",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 10,
+  "fields": {
+    "company_name": "test",
+    "description": "test",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-15",
+    "date_to": "2020-04-09",
+    "amount": 22.22,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 11,
+  "fields": {
+    "company_name": "ascxsd",
+    "description": "SDCSAx",
+    "expense_dated": "2020-04-10",
+    "date_from": "2020-04-17",
+    "date_to": "2020-04-17",
+    "amount": 222.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 12,
+  "fields": {
+    "company_name": "ascxsd",
+    "description": "SDCSAx",
+    "expense_dated": "2020-04-10",
+    "date_from": "2020-04-17",
+    "date_to": "2020-04-17",
+    "amount": 222.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 13,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 14,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 15,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 16,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 17,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 18,
+  "fields": {
+    "company_name": "qasxas",
+    "description": "asxsa",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-30",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 19,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 20,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 21,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 22,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 23,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 24,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 25,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 26,
+  "fields": {
+    "company_name": "wedscwsda",
+    "description": "asxas",
+    "expense_dated": "2020-04-07",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 11.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 27,
+  "fields": {
+    "company_name": "asxas",
+    "description": "asxas`z",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 28,
+  "fields": {
+    "company_name": "asxas",
+    "description": "asxas`z",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-23",
+    "date_to": "2020-04-10",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 29,
+  "fields": {
+    "company_name": "asXAZ",
+    "description": "ASXAS",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 30,
+  "fields": {
+    "company_name": "asXAZ",
+    "description": "ASXAS",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 31,
+  "fields": {
+    "company_name": "asXAZ",
+    "description": "ASXAS",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 32,
+  "fields": {
+    "company_name": "asXAZ",
+    "description": "ASXAS",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 33,
+  "fields": {
+    "company_name": "asXAZ",
+    "description": "ASXAS",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 34,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 35,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 36,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 37,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 38,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 39,
+  "fields": {
+    "company_name": "ASXAZ",
+    "description": "ZXCZ`",
+    "expense_dated": "2020-04-01",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 40,
+  "fields": {
+    "company_name": "wsaxasx",
+    "description": "asxs",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-15",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 41,
+  "fields": {
+    "company_name": "wsaxasx",
+    "description": "asxs",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-15",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 42,
+  "fields": {
+    "company_name": "New Test",
+    "description": "New Test",
+    "expense_dated": "2020-04-16",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.22,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 43,
+  "fields": {
+    "company_name": "New Test",
+    "description": "New Test",
+    "expense_dated": "2020-04-16",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.22,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 44,
+  "fields": {
+    "company_name": "sdzxcsd",
+    "description": "sdcxsd",
+    "expense_dated": "2020-04-15",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 45,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 46,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 47,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 48,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 49,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 50,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-02",
+    "date_from": "2020-04-16",
+    "date_to": "2020-04-09",
+    "amount": 23.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 51,
+  "fields": {
+    "company_name": "saxqw",
+    "description": "qwsqw",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 52,
+  "fields": {
+    "company_name": "saxqw",
+    "description": "qwsqw",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 53,
+  "fields": {
+    "company_name": "saxqw",
+    "description": "qwsqw",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-08",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 54,
+  "fields": {
+    "company_name": "wqdsadx",
+    "description": "asdxas",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-15",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 55,
+  "fields": {
+    "company_name": "wqdsadx",
+    "description": "asdxas",
+    "expense_dated": "2020-04-08",
+    "date_from": "2020-04-15",
+    "date_to": "2020-04-09",
+    "amount": 22.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 56,
+  "fields": {
+    "company_name": "Bulb Energy",
+    "description": "asdas",
+    "expense_dated": "2020-04-15",
+    "date_from": "2020-04-07",
+    "date_to": "2020-04-01",
+    "amount": 23.45,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 57,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "Water Bill",
+    "expense_dated": "2020-04-08",
+    "date_from": "1970-01-14",
+    "date_to": "2020-04-24",
+    "amount": 2.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 27,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 58,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "STANDARD PACKAGE",
+    "expense_dated": "2020-04-16",
+    "date_from": "1970-01-09",
+    "date_to": "2020-04-09",
+    "amount": 100.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 59,
+  "fields": {
+    "company_name": "Sky TV",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 400.34,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 60,
+  "fields": {
+    "company_name": "Bulb Energy",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 300.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 61,
+  "fields": {
+    "company_name": "sazX",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 30000.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 62,
+  "fields": {
+    "company_name": "wsxs",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 203.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 63,
+  "fields": {
+    "company_name": "ddd",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 292929.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.expense",
+  "pk": 64,
+  "fields": {
+    "company_name": "ssssssssss",
+    "description": "",
+    "expense_dated": "2020-04-22",
+    "date_from": null,
+    "date_to": null,
+    "amount": 2323.0,
+    "image": "",
+    "residence": 1,
+    "admin_user": 1,
+    "users_liable": []
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 7,
+  "fields": {
+    "expense": 23,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 8,
+  "fields": {
+    "expense": 24,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 9,
+  "fields": {
+    "expense": 25,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 10,
+  "fields": {
+    "expense": 26,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 11,
+  "fields": {
+    "expense": 35,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 12,
+  "fields": {
+    "expense": 36,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 13,
+  "fields": {
+    "expense": 37,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 14,
+  "fields": {
+    "expense": 37,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 15,
+  "fields": {
+    "expense": 38,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 16,
+  "fields": {
+    "expense": 38,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 17,
+  "fields": {
+    "expense": 39,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 18,
+  "fields": {
+    "expense": 40,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 19,
+  "fields": {
+    "expense": 40,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 20,
+  "fields": {
+    "expense": 41,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 21,
+  "fields": {
+    "expense": 41,
+    "user": 1,
+    "percentage_to_pay": 20.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 22,
+  "fields": {
+    "expense": 42,
+    "user": 2,
+    "percentage_to_pay": 22.22,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 23,
+  "fields": {
+    "expense": 42,
+    "user": 5,
+    "percentage_to_pay": 22.22,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 24,
+  "fields": {
+    "expense": 42,
+    "user": 1,
+    "percentage_to_pay": 33.54,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 25,
+  "fields": {
+    "expense": 43,
+    "user": 5,
+    "percentage_to_pay": 22.22,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 26,
+  "fields": {
+    "expense": 43,
+    "user": 1,
+    "percentage_to_pay": 33.54,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 27,
+  "fields": {
+    "expense": 44,
+    "user": 2,
+    "percentage_to_pay": 21.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 28,
+  "fields": {
+    "expense": 44,
+    "user": 5,
+    "percentage_to_pay": 21.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 29,
+  "fields": {
+    "expense": 44,
+    "user": 1,
+    "percentage_to_pay": 12.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 30,
+  "fields": {
+    "expense": 47,
+    "user": 2,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 31,
+  "fields": {
+    "expense": 47,
+    "user": 5,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 32,
+  "fields": {
+    "expense": 47,
+    "user": 1,
+    "percentage_to_pay": 22.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 33,
+  "fields": {
+    "expense": 49,
+    "user": 5,
+    "percentage_to_pay": 33.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 34,
+  "fields": {
+    "expense": 53,
+    "user": 2,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 35,
+  "fields": {
+    "expense": 53,
+    "user": 5,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 36,
+  "fields": {
+    "expense": 55,
+    "user": 2,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 37,
+  "fields": {
+    "expense": 55,
+    "user": 5,
+    "percentage_to_pay": 22.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 38,
+  "fields": {
+    "expense": 55,
+    "user": 1,
+    "percentage_to_pay": 22.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 39,
+  "fields": {
+    "expense": 56,
+    "user": 2,
+    "percentage_to_pay": 45.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 40,
+  "fields": {
+    "expense": 56,
+    "user": 5,
+    "percentage_to_pay": 0.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 41,
+  "fields": {
+    "expense": 56,
+    "user": 1,
+    "percentage_to_pay": 23.34,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 42,
+  "fields": {
+    "expense": 57,
+    "user": 2,
+    "percentage_to_pay": 0.5,
+    "paid_flag": false,
+    "admin_user": 27
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 43,
+  "fields": {
+    "expense": 57,
+    "user": 5,
+    "percentage_to_pay": 0.5,
+    "paid_flag": false,
+    "admin_user": 27
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 44,
+  "fields": {
+    "expense": 57,
+    "user": 1,
+    "percentage_to_pay": 0.5,
+    "paid_flag": true,
+    "admin_user": 27
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 45,
+  "fields": {
+    "expense": 57,
+    "user": 27,
+    "percentage_to_pay": 0.5,
+    "paid_flag": false,
+    "admin_user": 27
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 46,
+  "fields": {
+    "expense": 58,
+    "user": 27,
+    "percentage_to_pay": 16.67,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 47,
+  "fields": {
+    "expense": 58,
+    "user": 28,
+    "percentage_to_pay": 74.56,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 48,
+  "fields": {
+    "expense": 58,
+    "user": 2,
+    "percentage_to_pay": 16.67,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 49,
+  "fields": {
+    "expense": 58,
+    "user": 4,
+    "percentage_to_pay": 16.67,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 50,
+  "fields": {
+    "expense": 58,
+    "user": 5,
+    "percentage_to_pay": 16.67,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 51,
+  "fields": {
+    "expense": 58,
+    "user": 1,
+    "percentage_to_pay": 16.67,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 52,
+  "fields": {
+    "expense": 59,
+    "user": 1,
+    "percentage_to_pay": 100.07,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 53,
+  "fields": {
+    "expense": 59,
+    "user": 15,
+    "percentage_to_pay": 100.09,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 54,
+  "fields": {
+    "expense": 59,
+    "user": 16,
+    "percentage_to_pay": 100.09,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 55,
+  "fields": {
+    "expense": 59,
+    "user": 17,
+    "percentage_to_pay": 100.09,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 56,
+  "fields": {
+    "expense": 60,
+    "user": 2,
+    "percentage_to_pay": 75.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 57,
+  "fields": {
+    "expense": 60,
+    "user": 4,
+    "percentage_to_pay": 75.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 58,
+  "fields": {
+    "expense": 60,
+    "user": 7,
+    "percentage_to_pay": 75.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 59,
+  "fields": {
+    "expense": 60,
+    "user": 1,
+    "percentage_to_pay": 75.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 60,
+  "fields": {
+    "expense": 61,
+    "user": 2,
+    "percentage_to_pay": 7500.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 61,
+  "fields": {
+    "expense": 61,
+    "user": 4,
+    "percentage_to_pay": 7500.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 62,
+  "fields": {
+    "expense": 61,
+    "user": 7,
+    "percentage_to_pay": 7500.0,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 63,
+  "fields": {
+    "expense": 61,
+    "user": 1,
+    "percentage_to_pay": 7500.0,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 64,
+  "fields": {
+    "expense": 62,
+    "user": 2,
+    "percentage_to_pay": 50.75,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 65,
+  "fields": {
+    "expense": 62,
+    "user": 4,
+    "percentage_to_pay": 50.75,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 66,
+  "fields": {
+    "expense": 62,
+    "user": 7,
+    "percentage_to_pay": 50.75,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 67,
+  "fields": {
+    "expense": 62,
+    "user": 1,
+    "percentage_to_pay": 50.75,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 68,
+  "fields": {
+    "expense": 63,
+    "user": 2,
+    "percentage_to_pay": 73232.25,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 69,
+  "fields": {
+    "expense": 63,
+    "user": 4,
+    "percentage_to_pay": 73232.25,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 70,
+  "fields": {
+    "expense": 63,
+    "user": 7,
+    "percentage_to_pay": 73232.25,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 71,
+  "fields": {
+    "expense": 63,
+    "user": 1,
+    "percentage_to_pay": 73232.25,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 72,
+  "fields": {
+    "expense": 64,
+    "user": 2,
+    "percentage_to_pay": 580.75,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 73,
+  "fields": {
+    "expense": 64,
+    "user": 4,
+    "percentage_to_pay": 580.75,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 74,
+  "fields": {
+    "expense": 64,
+    "user": 7,
+    "percentage_to_pay": 580.75,
+    "paid_flag": false,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.split",
+  "pk": 75,
+  "fields": {
+    "expense": 64,
+    "user": 1,
+    "percentage_to_pay": 580.75,
+    "paid_flag": true,
+    "admin_user": 1
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 1,
+  "fields": {
+    "residence": 1,
+    "user": 1,
+    "moved_in": "2020-04-17",
+    "moved_out": "2020-04-29",
+    "status": "Active"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 2,
+  "fields": {
+    "residence": 1,
+    "user": 28,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 3,
+  "fields": {
+    "residence": 1,
+    "user": 4,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 4,
+  "fields": {
+    "residence": 1,
+    "user": 2,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 5,
+  "fields": {
+    "residence": 1,
+    "user": 28,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 6,
+  "fields": {
+    "residence": 1,
+    "user": 2,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 7,
+  "fields": {
+    "residence": 1,
+    "user": 20,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 8,
+  "fields": {
+    "residence": 1,
+    "user": 21,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 9,
+  "fields": {
+    "residence": 1,
+    "user": 23,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 10,
+  "fields": {
+    "residence": 1,
+    "user": 25,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 11,
+  "fields": {
+    "residence": 1,
+    "user": 24,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 12,
+  "fields": {
+    "residence": 1,
+    "user": 26,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 13,
+  "fields": {
+    "residence": 1,
+    "user": 2,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 14,
+  "fields": {
+    "residence": 1,
+    "user": 4,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 15,
+  "fields": {
+    "residence": 1,
+    "user": 7,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 16,
+  "fields": {
+    "residence": 17,
+    "user": 29,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 17,
+  "fields": {
+    "residence": 1,
+    "user": 2,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 18,
+  "fields": {
+    "residence": 1,
+    "user": 18,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 19,
+  "fields": {
+    "residence": 1,
+    "user": 19,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 20,
+  "fields": {
+    "residence": 1,
+    "user": 20,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 21,
+  "fields": {
+    "residence": 1,
+    "user": 28,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 22,
+  "fields": {
+    "residence": 1,
+    "user": 29,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 23,
+  "fields": {
+    "residence": 1,
+    "user": 1,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 24,
+  "fields": {
+    "residence": 1,
+    "user": 3,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+},
+{
+  "model": "house_share.move",
+  "pk": 25,
+  "fields": {
+    "residence": 1,
+    "user": 12,
+    "moved_in": "2020-04-22",
+    "moved_out": null,
+    "status": "current"
+  }
+}
+]

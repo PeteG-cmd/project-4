@@ -8,20 +8,22 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_422_
 from .models import Address, Residence, Expense, Split, Move, Room
 from django.contrib.auth import get_user_model
 User = get_user_model()
-from .serializers import AddressSerializer, ResidenceSerializer, PopulatedAddressSerializer, PopulatedResidenceSerializer, ExpenseSerializer, PopulatedExpenseSerializer, SplitSerializer, PopulatedSplitSerializer, MoveSerializer, PopulatedMoveSerializer, RoomSerializer, PopulatedRoomSerializer, UserSerializer, PopulatedUserSerializer
+from .serializers import AddressSerializer, ResidenceSerializer, PopulatedAddressSerializer, PopulatedResidenceSerializer, ExpenseSerializer, PopulatedExpenseSerializer, SplitSerializer, PopulatedSplitSerializer, MoveSerializer, PopulatedMoveSerializer, RoomSerializer, PopulatedRoomSerializer, UserSerializer, PopulatedUserSerializer, PopulatedUserViewSerializer, ExpenseImageSerializer
 
 from rest_framework import permissions
 from rest_framework.permissions import BasePermission
 
 from rest_framework.permissions import IsAuthenticated # Import the is authenticated
 
-class isOwnerOrReadOnly(BasePermission):
+from datetime import datetime
+
+class isOwnerOrAdminOrReadOnly(BasePermission):
 
   def has_object_permission(self, request, view, obj):
     if request.method in permissions.SAFE_METHODS :
       return True
     
-    return request.user == obj.admin_user
+    return request.user == obj.admin_user or request.user == obj.user
    
 
 
@@ -76,23 +78,42 @@ class ResidenceUsersControll(ListCreateAPIView):
     serializer_class = ResidenceSerializer
 
     def put(self, request):
-      print(request.data)
       if request.data['event'] == 'accept':
         residence = Residence.objects.get(id=int(request.data['residence_id']))
         residence.tenants.add(User.objects.get(id=request.data['user_id']))
         residence.join_requests.remove(User.objects.get(id=request.data['user_id']))
         serializer_f = PopulatedResidenceSerializer(residence)
 
+        move = request.data
+        move['moved_in'] = datetime.today().strftime('%Y-%m-%d')
+        move['user'] = move['user_id']
+        move['residence'] = move['residence_id']
+        move['status'] = 'current'
+        serializer = MoveSerializer(data=move)
+        if serializer.is_valid():
+           serializer.save()
+           return Response({ 'join_request': serializer_f.data, 'move_detail': serializer.data} ,  status=HTTP_202_ACCEPTED)
+        return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
-
-
-        return Response(serializer_f.data, status=HTTP_202_ACCEPTED)
-      
       elif request.data['event'] == 'decline':
           residence = Residence.objects.get(id=int(request.data['residence_id']))
           residence.join_requests.remove(User.objects.get(id=request.data['user_id']))
           serializer = PopulatedResidenceSerializer(residence)
-          return Response(serializer.data, status=HTTP_202_ACCEPTED)
+          return Response({ 'join_request': serializer.data}, status=HTTP_202_ACCEPTED)
+
+class ResidenceSingleUserControll(ListCreateAPIView):
+    queryset = Residence.objects.all()
+    serializer_class = ResidenceSerializer
+
+    # This is being used as the detail view for any member of the residence to see. Only the admin user or the user will be able to 'put' from this view, but all residents can get
+    def post(self, request):
+      print(request.data)
+      current_user = request.user
+      serializer_f = UserSerializer(current_user)
+      user = User.objects.get(id=request.data['id'])
+      serializer = PopulatedUserViewSerializer(user)
+      
+      return Response({'user_profile': serializer.data, 'current_user': serializer_f.data })
 
 
 class ResidenceListView(ListCreateAPIView):
@@ -111,13 +132,21 @@ class ResidenceListView(ListCreateAPIView):
       request.data['tenants'] = [request.user.id,]
       print(request.data)
 
-      serializer = ResidenceSerializer(data=request.data)
+      serializer_f = ResidenceSerializer(data=request.data)
       
-      if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=HTTP_201_CREATED)
+      if serializer_f.is_valid():
+        serializer_f.save()
+        move = request.data
+        move['moved_in'] = datetime.today().strftime('%Y-%m-%d')
+        move['user'] = request.user.id
+        move['residence'] = serializer_f.data['id']
+        move['status'] = 'current'
+        serializer = MoveSerializer(data=move)
+        if serializer.is_valid():
+           serializer.save()
+           return Response(serializer_f.data, status=HTTP_201_CREATED)
 
-      return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+      return Response(serializer_f.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
     
     def put(self, request):
       short_name = request.data['short_name']
@@ -196,7 +225,7 @@ class ExpenseDetailView(RetrieveUpdateDestroyAPIView):
   queryset = Expense.objects.all()
   serializer_class = ExpenseSerializer
 
-  permission_classes = (isOwnerOrReadOnly),
+  permission_classes = (isOwnerOrAdminOrReadOnly),
 
   def get(self, request, pk):
     print(request.user)
@@ -205,12 +234,14 @@ class ExpenseDetailView(RetrieveUpdateDestroyAPIView):
     serializer = PopulatedExpenseSerializer(expense)
     return Response(serializer.data)
 
+  # This is currently used to add an image to the bill after it is created
+
   def put(self, request, pk):
     expense = Expense.objects.get(pk=pk)
     self.check_object_permissions(request, expense)
-    serializer = ExpenseSerializer(expense, data=request.data)
+    serializer = ExpenseImageSerializer(expense, data=request.data)
     if serializer.is_valid():
-      serializer.save()
+      serializer.save(update_fields=['image'])
       return Response(serializer.data, status=HTTP_202_ACCEPTED)
 
     return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
@@ -227,6 +258,8 @@ class SplitListView(ListCreateAPIView):
     queryset = Split.objects.all()
     serializer_class = SplitSerializer
 
+    permission_classes = (isOwnerOrAdminOrReadOnly),
+
     def get(self, request):
       splits = Split.objects.all()
       serializer = PopulatedSplitSerializer(splits, many=True)
@@ -239,6 +272,19 @@ class SplitListView(ListCreateAPIView):
         return Response(serializer.data, status=HTTP_201_CREATED)
 
       return Response(serializer.data, status=HTTP_422_UNPROCESSABLE_ENTITY)
+    
+    # This is used for marking an expense as paid, and should be limited for use by the split user or admin user. It then returns the split and the detail user view to update the page
+    def put(self, request):
+      split = Split.objects.get(pk=request.data['id'])
+      self.check_object_permissions(request, split)
+      serializer_f = SplitSerializer(split, data=request.data)
+      if serializer_f.is_valid():
+        serializer_f.save()
+        user = User.objects.get(id=request.data['user'])
+        serializer = PopulatedUserViewSerializer(user)
+        return Response({ 'user_profile': serializer.data, 'split': serializer_f.data }, status=HTTP_202_ACCEPTED)
+
+      return Response(serializer_f.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 
 class SplitDetailView(RetrieveUpdateDestroyAPIView):
@@ -362,7 +408,23 @@ class UserProfileDetailView(RetrieveUpdateDestroyAPIView):
     serializer = PopulatedUserSerializer(user)
     return Response(serializer.data)
 
+  # This is used to remove a current user from a residence, and put them in to the 'past_tenants'
+  def put(self, request):
+    print(request.data)
+    residence = Residence.objects.get(pk=request.data['residence'])
+    residence.tenants.remove(request.user)
+    residence.past_tenants.add(request.user)
+    serializer_f = ResidenceSerializer(residence)
+    move = Move.objects.get(pk=request.data['moves']['id'])
+    request.data['moves']['moved_out'] = datetime.today().strftime('%Y-%m-%d')
+    serializer = MoveSerializer(move, data=request.data['moves'])
+    if serializer.is_valid():
+      serializer.save()
+      return Response({ 'move': serializer.data, 'residence': serializer_f.data}, status=HTTP_202_ACCEPTED)
+
+    return Response(serializer.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
 
+    
 
 

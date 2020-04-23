@@ -42,9 +42,10 @@ class Expense(models.Model):
   date_from = models.DateField(null=True)
   date_to = models.DateField(null=True)
   amount = models.FloatField()
+  payment_due_date = models.DateField(null=True)
   image = models.ImageField(upload_to='bill_image', null=True)
   residence = models.ForeignKey(Residence, related_name='expenses', on_delete=models.CASCADE)
-  users_liable = models.ManyToManyField(User, related_name='expenses', blank=True)
+  # users_liable = models.ManyToManyField(User, related_name='expenses', blank=True)
   admin_user = models.ForeignKey(User, related_name='expense', on_delete=models.CASCADE)
 
   def __str__(self):
@@ -53,7 +54,6 @@ class Expense(models.Model):
 
 class Split(models.Model):
   expense = models.ForeignKey(Expense, related_name='splits', on_delete=models.CASCADE)
-  # residence = models.ForeignKey(Residence, related_name='splits', on_delete=models.CASCADE)
   user = models.ForeignKey(User, related_name='splits', on_delete=models.CASCADE)
   percentage_to_pay = models.FloatField()
   paid_flag = models.BooleanField()
@@ -67,7 +67,7 @@ class Move(models.Model):
   residence = models.ForeignKey(Residence, related_name='moves', on_delete=models.CASCADE)
   user = models.ForeignKey(User, related_name='moves', on_delete=models.CASCADE)
   moved_in = models.DateField()
-  moved_out = models.DateField()
+  moved_out = models.DateField(null=True)
   status = models.CharField(max_length=30)
 
   def __str__(self):
