@@ -32,7 +32,7 @@ class CreateExpense extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/userprofile', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.get('/api/userprofile/', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res)
         this.setState({ userProfile: res.data, residence: res.data.residences[0].id })

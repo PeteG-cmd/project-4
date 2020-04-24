@@ -17,7 +17,7 @@ class ProfileImage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.put('/api/updateProfile', this.state.image, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${auth.getToken()}` } })
+    axios.put('/api/updateProfile/', this.state.image, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         this.props.history.push('/')
       })

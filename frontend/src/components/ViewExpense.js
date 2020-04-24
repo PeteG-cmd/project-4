@@ -16,7 +16,7 @@ class ViewExpense extends React.Component {
 
   componentDidMount() {
     const expenseId = this.props.match.params.expense_id
-    axios.get(`/api/expense/${expenseId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.get(`/api/expense/${expenseId}/`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res)
         this.setState({ expense: res.data })
