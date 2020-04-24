@@ -28,7 +28,7 @@ export default class Home extends React.Component {
       })
       .catch(err => {
         this.setState({ error: err.response.data.message })
-        this.props.history.push('/houseShareWelcome')
+        // this.props.history.push('/houseShareWelcome')
       })
   }
 
