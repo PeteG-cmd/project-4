@@ -17,7 +17,7 @@ const HouseShareWelcome = () => {
 
 
     <h1 className='welcomePageText'>Welcome to House-Share!</h1>
-    <h2 className='welcomePageText'>This is the app to make your life easier.</h2>
+    <h2 className='welcomePageText'>This is the app to make your life easierHELOOOOOOOO.</h2>
 
     <h2 className='welcomePageText'> On House-Share you can:</h2>
     <p>Share Expenses</p>

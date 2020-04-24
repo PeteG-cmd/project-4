@@ -111,6 +111,7 @@ export default class Home extends React.Component {
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
+                    
                     {!user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
                   </p>
                 </Link>
