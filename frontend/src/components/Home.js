@@ -33,7 +33,7 @@ export default class Home extends React.Component {
   }
 
   handleUpdate(event) {
-    axios.get('/api/userprofile', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.get('/api/userprofile/', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         this.setState({ userProfile: res.data })
       })
