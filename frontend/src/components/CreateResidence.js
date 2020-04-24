@@ -1,5 +1,5 @@
 
-import React from 'React'
+import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 
