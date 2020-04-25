@@ -7,5 +7,5 @@ from .views import RegisterView, LoginView, UpdateProfileViev
 urlpatterns = [
     path('register', RegisterView.as_view()), # sending requests to  '/register' to the register view(controller)
     path('login', LoginView.as_view()), # and the same for login
-    path('updateProfile', UpdateProfileViev.as_view())
+    path('updateProfile/', UpdateProfileViev.as_view())
 ]
