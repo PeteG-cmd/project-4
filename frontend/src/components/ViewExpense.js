@@ -91,7 +91,7 @@ class ViewExpense extends React.Component {
 
 
             <p className="image is-480x600">
-              <img src={`http://localhost:4000${expense.image}`}></img>
+              <img src={`${expense.image}`}></img>
             </p>
           </div>
 
@@ -122,7 +122,7 @@ class ViewExpense extends React.Component {
                 return <div key={index} className='column is-one-quarter'>
                   <div className="circleBox">
                     <p className="image is-100x100">
-                      {split.user.image && <img className='is-rounded' src={`http://localhost:4000${split.user.image}`}></img>}
+                      {split.user.image && <img className='is-rounded' src={`${split.user.image}`}></img>}
                       {!split.user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
                     </p>
                   </div>
