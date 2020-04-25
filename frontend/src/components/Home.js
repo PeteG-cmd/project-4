@@ -112,7 +112,8 @@ export default class Home extends React.Component {
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
                     
-                    {!user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
+                    {!user.image && <img className='is-rounded' src={'project/media/assets/user-placeholder.jpg'}></img>}
+                    {/* project/media/assets/user-placeholder.jpg */}
                   </p>
                 </Link>
               </div>
