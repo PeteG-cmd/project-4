@@ -43,7 +43,7 @@ class ProfileImage extends React.Component {
 
           <div className='circleBox'>
             {!this.state.imagePreview && <p className="image is-100x100">
-              <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
+              <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>
             </p>}
             {this.state.imagePreview && <p className="image is-100x100">
               <img className='is-rounded' src={this.state.imagePreview}></img>
