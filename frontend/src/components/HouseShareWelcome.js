@@ -6,7 +6,7 @@ const HouseShareWelcome = () => {
 
   return <div className='welcomePageDiv growWidth'>
 
-    <img className='welcomePageImage' src="http://localhost:4000/media/assets/round-logo-2.jpg" alt=""/>
+    <img className='welcomePageImage' src="media/assets/round-logo-2.jpg" alt=""/>
 
     <div className="level">
       <div className="level-item">
@@ -22,7 +22,7 @@ const HouseShareWelcome = () => {
     <h2 className='welcomePageText'> On House-Share you can:</h2>
     <p>Share Expenses</p>
 
-    <img className='welcomePageImage' src="http://localhost:4000/media/assets/money-image.jpg" alt=""/>
+    <img className='welcomePageImage' src="media/assets/money-image.jpg" alt=""/>
 
    
   </div>

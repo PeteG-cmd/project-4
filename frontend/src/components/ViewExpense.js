@@ -123,7 +123,7 @@ class ViewExpense extends React.Component {
                   <div className="circleBox">
                     <p className="image is-100x100">
                       {split.user.image && <img className='is-rounded' src={`http://localhost:4000${split.user.image}`}></img>}
-                      {!split.user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
+                      {!split.user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
                     </p>
                   </div>
                   <div className="lineBox"></div>

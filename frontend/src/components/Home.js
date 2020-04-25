@@ -112,8 +112,8 @@ export default class Home extends React.Component {
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
                     
-                    {!user.image && <img className='is-rounded' src={'assets/user-placeholder.jpg'}></img>}
-                    {/* project/media/assets/user-placeholder.jpg */}
+                    {!user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
+          
                   </p>
                 </Link>
               </div>
@@ -144,10 +144,10 @@ export default class Home extends React.Component {
               <p>{tenant.username}</p>
               <div className='circleBox'>
                 {!tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
+                  <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>
                 </p>}
                 {tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={`http://localhost:4000${tenant.image}`}></img>
+                  <img className='is-rounded' src={`${tenant.image}`}></img>
                 </p>}
               </div>
             </div></Link>
