@@ -83,8 +83,19 @@ class ViewExpense extends React.Component {
             <div>
               <p className='subtitle'>This expense costs:</p>
               {expense.date_to && expense.date_from && <p>Per Day: £{(expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')).toFixed(2)}</p>}
-              <p>Per User: £{(expense.amount / expense.splits.length)}</p>
-              {expense.date_to && expense.date_from && <p>Per User per Day: £{(expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')).toFixed(2) / expense.splits.length} </p>}
+              <p>Per User: £{(expense.amount / expense.splits.length).toFixed(2)}</p>
+              {expense.date_to && expense.date_from && <p>Per User per Day: £{((expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')) / expense.splits.length).toFixed(2)} </p>}
+            </div>
+
+            <br></br>
+
+            <div className='userNameImageBar'>
+              <p>Expense added by: {expense.admin_user.username}</p>
+              <div className='imageDiv50'>
+                <figure className='image is-32x32'>
+                  <img src={`${expense.admin_user.image}`}></img>
+                </figure>
+              </div>
             </div>
 
             <br></br>
@@ -117,9 +128,9 @@ class ViewExpense extends React.Component {
               <p className='subtitle'>The outstanding amount is due in {Moment(expense.payment_due_date).diff(Moment(new Date()), 'days')} days</p>
             </div>}
 
-            <div className="columns is-multiline">
+            <div className="columns is-multiline is-mobile">
               {expense.splits.map((split, index) => {
-                return <div key={index} className='column is-one-quarter'>
+                return <div key={index} className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile'>
                   <div className="circleBox">
                     <p className="image is-100x100">
                       {split.user.image && <img className='is-rounded' src={`${split.user.image}`}></img>}

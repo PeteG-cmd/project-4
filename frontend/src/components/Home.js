@@ -63,14 +63,47 @@ export default class Home extends React.Component {
       })
     })
     return { settledExpenses: settledExpenses, openExpenses: openExpenses }
+  }
+
+  groupExpenses() {
+    if (!this.state.userProfile.residences[0]) return
+    const groupedExpenses = {}
+    this.sortByDate(this.state.userProfile.residences[0].expenses).map(expense => {
+      if (!groupedExpenses[expense.company_name]) {
+        groupedExpenses[expense.company_name] = [expense]
+      } else {
+        groupedExpenses[expense.company_name].push(expense)
+      }
+    })
+    const array = Object.values(groupedExpenses)
+    return array
 
   }
+
+  expenseClicked(name, group) {
+    console.log(group)
+    // event.preventDefault()
+    const x = document.getElementsByName(name)
+    for (let i = 0; i < x.length; i++) {
+      x[i].classList.toggle('hiddenTab')
+      x[i].classList.toggle('slideDown')
+    }
+    const y = document.getElementsByName(group)
+    for (let i = 0; i < y.length; i++) {
+      y[i].classList.toggle('closeCross')
+    }
+  }
+
+
 
   render() {
 
     if (!this.state.userProfile) return <h1>Waiting</h1>
     const user = this.state.userProfile
     const dashData = this.calculateDashboard()
+    const groupedExpenses = this.groupExpenses()
+    console.log(groupedExpenses)
+    console.log(typeof (groupedExpenses))
 
     console.log(this.state.userProfile)
 
@@ -111,9 +144,9 @@ export default class Home extends React.Component {
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`${user.image}`}></img>}
-                    
+
                     {!user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
-          
+
                   </p>
                 </Link>
               </div>
@@ -167,13 +200,42 @@ export default class Home extends React.Component {
               <button className='button is-fullwidth is-link'>Add and new expense</button>
             </div></Link>
 
-            {user.residences[0] && this.sortByDate(user.residences[0].expenses).map((expense, index) => {
+            {/* {user.residences[0] && this.sortByDate(user.residences[0].expenses).map((expense, index) => {
               return <Link key={index} to={`/viewExpense/${expense.id}`}><div key={index} className="column is-12-desktop expenseRowDisplay">
                 <p>{expense.company_name}</p>
                 <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
                 <p>£{expense.amount}</p>
 
               </div></Link>
+            })} */}
+
+            {user.residences[0] && groupedExpenses.map((groupedExpense, index) => {
+              return <div key={index}>
+
+                <div
+                  className="column is-12-desktop expenseRowDisplay"
+                  name={`grouped-${index}`}
+                  onClick={() => this.expenseClicked(`${groupedExpense[0].company_name}`, `grouped-${index}`)}
+                >
+                  <p>{groupedExpense[0].company_name}</p>
+                  <p>Bills Grouped: {groupedExpense.length}</p>
+                  <p>Latest Bill: {Moment(groupedExpense[0].expense_dated).format('DD MM YY')}</p>
+                </div>
+                {groupedExpense.map((expense, index) => {
+                  return <Link key={index} to={`/viewExpense/${expense.id}`}>
+                    <div
+                      className="column is-12-desktop expenseRowDisplay hiddenTab"
+                      name={expense.company_name}
+                    >
+                      <p>{expense.company_name}</p>
+                      <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
+                      <p>£{expense.amount}</p>
+                    </div></Link>
+
+                })}
+
+              </div>
+
             })}
 
           </div>}

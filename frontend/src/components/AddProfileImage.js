@@ -15,6 +15,8 @@ class ProfileImage extends React.Component {
     }
   }
 
+  
+
   handleSubmit(event) {
     event.preventDefault()
     axios.put('/api/updateProfile/', this.state.image, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${auth.getToken()}` } })
@@ -27,11 +29,48 @@ class ProfileImage extends React.Component {
 
 
   handleImageChange(image) {
-    console.log(image.target.files[0])
+
+    console.log(this.compress(image))
     const formData = new FormData()
     formData.append('image', image.target.files[0], image.target.files[0].name)
-    this.setState({ image: formData, imagePreview: URL.createObjectURL(event.target.files[0])
+
+    this.setState({
+      image: formData, imagePreview: URL.createObjectURL(event.target.files[0])
     })
+
+
+  }
+
+  compress(e) {
+    const width = 500
+    const height = 300
+    const fileName = e.target.files[0].name
+    const reader = new FileReader()
+    reader.readAsDataURL(e.target.files[0])
+    reader.onload = event => {
+      const img = new Image()
+      img.src = event.target.result
+      img.onload = () => {
+        const elem = document.createElement('canvas')
+        elem.width = width
+        elem.height = height
+        const ctx = elem.getContext('2d')
+        // img.width and img.height will contain the original dimensions
+        ctx.drawImage(img, 0, 0, width, height)
+        ctx.canvas.toBlob((blob) => {
+          const image = new File([blob], fileName, {
+            type: 'image/jpeg',
+            lastModified: Date.now()
+            
+          })
+          console.log(image)
+            console.log(image.target.files[0])
+          
+        }, 'image/jpeg', 1)
+        console.log(img)
+      },
+      reader.onerror = error => console.log(error)
+    }
 
   }
 
