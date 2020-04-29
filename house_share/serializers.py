@@ -59,7 +59,7 @@ class PopulatedExpensesSplitSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = Expense
-    fields = ('id', 'company_name', 'description', 'expense_dated', 'date_from', 'date_to', 'amount', 'image', 'residence', 'splits', 'admin_user')
+    fields = ('id', 'company_name', 'description', 'expense_dated', 'date_from', 'date_to', 'payment_due_date', 'amount', 'image', 'residence', 'splits', 'admin_user')
 
 class PastTenantSplitSerializer(serializers.ModelSerializer):
 

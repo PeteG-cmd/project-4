@@ -150,6 +150,7 @@ body, html {
 .centeredTitle {
   margin: auto;
   text-align: center;
+  padding-bottom: 10px;
 }
 
 .expenseRowDisplay {
@@ -196,6 +197,23 @@ body, html {
     opacity: 1;
   }
 }
+
+// .groupedExpense :nth-child(1) {
+//     animation: slide-down-two 0.3s linear;
+
+// }
+
+// @keyframes slide-down-two {
+//   0% {
+//     transform: translate(0,-200%);
+//     opacity: 0.3;
+//   }
+
+//   100% {
+//     transform: translate(0,0);
+//     opacity: 1;
+//   }
+// }
 
 
 

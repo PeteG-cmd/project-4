@@ -94,6 +94,22 @@ export default class Home extends React.Component {
     }
   }
 
+  amountDueInDays(user, tenant, lessThanDays, greaterThanDays) {
+    let amount = 0
+    user.residences[0].expenses.map(expense => {
+      const daysUntilDue = (Moment(expense.payment_due_date).diff(Moment(new Date()), 'days'))
+      if (daysUntilDue > greaterThanDays && daysUntilDue < lessThanDays) {
+        expense.splits.map(split => {
+          if (split.user.id === tenant.id && split.paid_flag === false) {
+            amount += split.percentage_to_pay
+          }
+        })
+      }
+    })
+    return amount
+  }
+
+  
 
 
   render() {
@@ -200,17 +216,8 @@ export default class Home extends React.Component {
               <button className='button is-fullwidth is-link'>Add and new expense</button>
             </div></Link>
 
-            {/* {user.residences[0] && this.sortByDate(user.residences[0].expenses).map((expense, index) => {
-              return <Link key={index} to={`/viewExpense/${expense.id}`}><div key={index} className="column is-12-desktop expenseRowDisplay">
-                <p>{expense.company_name}</p>
-                <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
-                <p>£{expense.amount}</p>
-
-              </div></Link>
-            })} */}
-
             {user.residences[0] && groupedExpenses.map((groupedExpense, index) => {
-              return <div key={index}>
+              return <div key={index} className='groupedExpense'>
 
                 <div
                   className="column is-12-desktop expenseRowDisplay"
@@ -239,6 +246,46 @@ export default class Home extends React.Component {
             })}
 
           </div>}
+        </div>
+
+
+        <div className="column is-half">
+          <div className="box has-text-centered">
+            <h2 className='centeredTitle'>HOUSE TIMELINE</h2>
+            <div className="columns is-multiline is-mobile">
+              {user.residences[0].tenants.map((tenant, index) => {
+                return <div key={index} className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile'>
+                  <div className="circleBox">
+                    <p className="image is-100x100">
+                      {tenant.image && <img className='is-rounded' src={`${tenant.image}`}></img>}
+                      {!tenant.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
+                    </p>
+                  </div>
+                  <div className="lineBox"></div>
+                  <div className="rectBox">
+                    <p>Overdue:</p>
+                    <p>£{this.amountDueInDays(user, tenant, 0, -100000)}</p>
+                  </div>
+                  <div className="lineBox"></div>
+                  <div className="rectBox">
+                    <p>Due in next 7 days:</p>
+                    <p>£{this.amountDueInDays(user, tenant, 8, -1)}</p>
+                  </div>
+                  <div className="lineBox"></div>
+                  <div className="rectBox">
+                    <p>Due in next 7 - 31 Days:</p>
+                    <p>£{this.amountDueInDays(user, tenant, 32, 7)}</p>
+                  </div>
+                  <div className="lineBox"></div>
+                  <div className="rectBox">
+                    <p>Due in: 31 days +:</p>
+                    <p>£{this.amountDueInDays(user, tenant, 1000000, 31)}</p>
+                  </div>
+                </div>
+              })}
+
+            </div>
+          </div>
         </div>
       </div>
     </div>
