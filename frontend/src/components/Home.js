@@ -220,7 +220,7 @@ export default class Home extends React.Component {
               return <div key={index} className='groupedExpense'>
 
                 <div
-                  className="column is-12-desktop expenseRowDisplay"
+                  className="column is-12-desktop expenseRowDisplay expenseRowDisplayGrouped"
                   name={`grouped-${index}`}
                   onClick={() => this.expenseClicked(`${groupedExpense[0].company_name}`, `grouped-${index}`)}
                 >
@@ -252,7 +252,7 @@ export default class Home extends React.Component {
         <div className="column is-half">
           <div className="box has-text-centered">
             <h2 className='centeredTitle'>HOUSE TIMELINE</h2>
-            <div className="columns is-multiline is-mobile">
+            {user.residences[0] && <div className="columns is-multiline is-mobile">
               {user.residences[0].tenants.map((tenant, index) => {
                 return <div key={index} className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile'>
                   <div className="circleBox">
@@ -264,27 +264,27 @@ export default class Home extends React.Component {
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Overdue:</p>
-                    <p>£{this.amountDueInDays(user, tenant, 0, -100000)}</p>
+                    <p>£{(this.amountDueInDays(user, tenant, 0, -100000)).toLocaleString('en')}</p>
                   </div>
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Due in next 7 days:</p>
-                    <p>£{this.amountDueInDays(user, tenant, 8, -1)}</p>
+                    <p>£{(this.amountDueInDays(user, tenant, 8, -1)).toLocaleString('en')}</p>
                   </div>
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Due in next 7 - 31 Days:</p>
-                    <p>£{this.amountDueInDays(user, tenant, 32, 7)}</p>
+                    <p>£{(this.amountDueInDays(user, tenant, 32, 7)).toLocaleString('en')}</p>
                   </div>
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Due in: 31 days +:</p>
-                    <p>£{this.amountDueInDays(user, tenant, 1000000, 31)}</p>
+                    <p>£{(this.amountDueInDays(user, tenant, 1000000, 31)).toLocaleString('en')}</p>
                   </div>
                 </div>
               })}
 
-            </div>
+            </div>}
           </div>
         </div>
       </div>
