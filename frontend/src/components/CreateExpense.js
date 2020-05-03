@@ -5,6 +5,8 @@ import auth from '../lib/auth'
 import DatePicker from 'react-date-picker'
 import Moment, { now } from 'moment'
 
+import ExpenseGroupingModal from './ExpenseGroupingModal'
+import { LoadingDots } from './common/Spinner'
 
 
 class CreateExpense extends React.Component {
@@ -27,7 +29,8 @@ class CreateExpense extends React.Component {
       userProfile: null,
       splits: [],
       mySplits: {},
-      errors: {}
+      errors: {},
+      expense: null
     }
   }
 
@@ -46,10 +49,8 @@ class CreateExpense extends React.Component {
             this.setState({ expense_dated: today })
           })
         }, 50)
-
       })
       .catch(err => this.setState({ errors: err.response.data }))
-
   }
 
   handleSubmit() {
@@ -180,23 +181,40 @@ class CreateExpense extends React.Component {
     // })
   }
 
+  toggleModal() {
+    document.getElementById('modal').classList.toggle('is-active')
+  }
+
   expenseNameGrouping(event) {
     const { name, value } = event.target
-    this.state.userProfile.residences[0].expenses.map(expense => {
+    this.state.userProfile.residences[0].expenses.some(expense => {
       if (expense.company_name === value) {
-        alert('An expense with this name already exists, would you like to group these togeter? The details of the previous expense are XXXXXX')
+        this.setState({ expense })
+        setTimeout(() => {
+          this.toggleModal()
+        }, 100)
       }
     })
+  }
 
+  groupClicked() {
+    this.toggleModal()
+  }
+
+  cancelClicked() {
+    this.toggleModal()
+    this.setState({ company_name: this.state.company_name + ' - ' + Date.now() })
+    console.log(this.state)
 
   }
 
-
+  
 
   render() {
     const errors = this.state.errors
-    if (!this.state.userProfile || this.state.splits.length < this.state.userProfile.residences[0].tenants.length) return <h1>Waiting for user Profile</h1>
+    if (!this.state.userProfile || this.state.splits.length < this.state.userProfile.residences[0].tenants.length) return <LoadingDots />
     return <div>
+      <ExpenseGroupingModal expense={this.state.expense} groupClicked={(event) => this.groupClicked(event)} cancelClicked={(event) => this.cancelClicked(event) }/>
       <form className='form' onSubmit={(event) => this.handleSubmit(event)}>
         <div className="box has-text-centered">
           <div className="columns is-multiline">

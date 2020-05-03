@@ -1,9 +1,10 @@
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 
 import Moment, { now } from 'moment'
+import { LoadingDots } from './common/Spinner'
 
 class ViewExpense extends React.Component {
 
@@ -13,6 +14,8 @@ class ViewExpense extends React.Component {
       expense: null
     }
   }
+
+  // const [expense, setExpense] = useState([])
 
   componentDidMount() {
     const expenseId = this.props.match.params.expense_id
@@ -30,13 +33,13 @@ class ViewExpense extends React.Component {
         amountPaid += split.percentage_to_pay
       }
     })
-    return amountPaid
+    return amountPaid.toLocaleString()
   }
 
 
   render() {
     console.log(this.state.expense)
-    if (!this.state.expense) return <h1>Waiting</h1>
+    if (!this.state.expense) return <LoadingDots />
     const expense = this.state.expense
 
     return <div>
@@ -113,15 +116,15 @@ class ViewExpense extends React.Component {
           <div className="box has-text-centered growHeight">
             <h1 className="title">Payment Status</h1>
             <div className="box">
-              <p className='subtitle'>Total Expense Amount: £{expense.amount}</p>
+              <p className='subtitle'>Total Expense Amount: £{expense.amount.toLocaleString()}</p>
             </div>
 
             <div className="box">
-              <p className='subtitle'>Total Paid: £{this.calculateAmountPaid().toFixed(2)}</p>
+              <p className='subtitle'>Total Paid: £{this.calculateAmountPaid()}</p>
             </div>
 
             <div className="box">
-              <p className='subtitle'>Total Outstanding: £{(expense.amount - this.calculateAmountPaid()).toFixed(2)}</p>
+              <p className='subtitle'>Total Outstanding: £{(expense.amount - this.calculateAmountPaid()).toLocaleString()}</p>
             </div>
 
             {expense.payment_due_date && <div className="box">
@@ -140,13 +143,13 @@ class ViewExpense extends React.Component {
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Amount Owed</p>
-                    {split.paid_flag === false && <p>£{split.percentage_to_pay}</p>}
+                    {split.paid_flag === false && <p>£{split.percentage_to_pay.toLocaleString()}</p>}
                     {split.paid_flag === true && <p>£0</p>}
                   </div>
                   <div className="lineBox"></div>
                   <div className="rectBox">
                     <p>Amount Paid</p>
-                    {split.paid_flag === true && <p>£{split.percentage_to_pay}</p>}
+                    {split.paid_flag === true && <p>£{split.percentage_to_pay.toLocaleString()}</p>}
                     {split.paid_flag === false && <p>£0</p>}
                   </div>
                 </div>

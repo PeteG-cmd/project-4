@@ -16,6 +16,10 @@ class Navbar extends React.Component {
     this.props.history.push('/HouseShareWelcome')
   }
 
+  togglenav() {
+    this.setState({ navMobileOpen: !this.state.navMobileOpen })
+  }
+
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -45,15 +49,15 @@ class Navbar extends React.Component {
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
+            <a onClick={() => this.togglenav()} className="navbar-link">
               Splits
             </a>
             <div className="navbar-dropdown">
               <div id="AllBooksNav"></div>
-              <Link to="#" className="navbar-item">
-                <p id="AllBooksNav">With my House</p>
+              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
+                <p>With my House</p>
               </Link>
-              <Link to="#" className="navbar-item">
+              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 With another user
               </Link>
             </div>
@@ -61,19 +65,19 @@ class Navbar extends React.Component {
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
+            <a className="navbar-link" onClick={() => this.togglenav()}>
               Expenses
             </a>
             <div className="navbar-dropdown">
-              <Link to="/bookclubs/myBookClubs" className="navbar-item">
+              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 My Expenses
               </Link>
 
-              <Link to="/bookclubs/new" className="navbar-item">
+              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 House Expenses
               </Link>
 
-              <Link to="/bookclubs" className="navbar-item">
+              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 Settled Expenses
               </Link>
             </div>
@@ -83,9 +87,9 @@ class Navbar extends React.Component {
         <div className="navbar-end">
           <div className="navbar-item">
             <div className="buttons">
-              {!isLoggedIn && <div className="button is-primary"><Link to="/register"><strong>Register</strong></Link></div>}
-              {!isLoggedIn && <div className="button is-light"><Link to="/login">Log in</Link></div>}
-              {isLoggedIn && <div className="button is-warning"><Link to="#">Profile</Link></div>}
+              {!isLoggedIn && <div className="button is-primary"><Link to="/register" onClick={() => this.togglenav()}><strong>Register</strong></Link></div>}
+              {!isLoggedIn && <div className="button is-light" onClick={() => this.togglenav()}><Link to="/login">Log in</Link></div>}
+              {isLoggedIn && <div className="button is-warning" onClick={() => this.togglenav()}><Link to="#">Profile</Link></div>}
               {isLoggedIn && <div
                 onClick={() => this.handleLogout()}
                 className="button is-light"

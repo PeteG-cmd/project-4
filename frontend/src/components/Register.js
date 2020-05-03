@@ -46,29 +46,29 @@ class Register extends React.Component {
 
   render() {
     const { errors } = this.state
-    return <main className="hero is-fullheight">
+    return <main className="hero is-fullheight registerPage">
       <div className="hero-body">
         <div className="container">
-          <section className="section">
-            <div className="container has-text-centered">
-              <div className="columns">
-                <div className="column is-one-third"></div>
-                <div className="column is-one-third">
-                  <div className="box">
-                    <h1 className="title">Register</h1>
-                    <RegistrationForm
-                      handleSubmit={(event) => this.handleSubmit(event)}
-                      handleChange={(event) => this.handleChange(event)}
-                      // handleImageChange={(image) => this.handleImageChange(image)}
-                      errors={errors}
-                      data={this.state.data}
-                    />
-                  </div>
+          {/* <section className="section"> */}
+          <div className="container has-text-centered">
+            <div className="columns">
+              <div className="column is-one-third"></div>
+              <div className="column is-one-third">
+                <div className="box">
+                  <h1 className="title">Register</h1>
+                  <RegistrationForm
+                    handleSubmit={(event) => this.handleSubmit(event)}
+                    handleChange={(event) => this.handleChange(event)}
+                    // handleImageChange={(image) => this.handleImageChange(image)}
+                    errors={errors}
+                    data={this.state.data}
+                  />
                 </div>
-                <div className="column is-one-third"></div>
               </div>
+              <div className="column is-one-third"></div>
             </div>
-          </section>
+          </div>
+          {/* </section> */}
         </div>
       </div>
     </main>

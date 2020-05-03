@@ -25,9 +25,10 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  // background-image: url('http://localhost:4000/media/assets/home-background.jpg');
-  // background-size: 100vw 100vh;
-  // background-repeat: no-repeat;
+  background-image: url('http://localhost:4000/media/assets/t-h-d.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: contain;
 }
 .welcomePageImage {
   margin: 3% auto;
@@ -38,6 +39,20 @@ body, html {
   padding: 2%;
   
 
+}
+
+.loginPage {
+  background-image: url('http://localhost:4000/media/assets/houses-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.registerPage {
+  background-image: url('http://localhost:4000/media/assets/CPG_SKYLIGHT.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .squareButton {
@@ -109,6 +124,7 @@ body, html {
 .rectBox {
   width: 100px;
   height: 80px;
+  // border-top: 2px solid blueviolet;
   border: 2px solid blueviolet;
   border-radius: 5%;
   margin: auto;
@@ -321,7 +337,7 @@ body, html {
   width: 100%;
 }
 
-.imageDiv150 {
+.imageDiv50 {
   width: 50px;
   margin: auto;
 }
@@ -330,6 +346,13 @@ body, html {
   width: 150px;
   margin: auto;
 }
+
+.expense500Div {
+  width: 380px;
+  margin: auto;
+  border: 1px solid black;
+}
+
 
 .breakHeading {
   margin-top: 12%;

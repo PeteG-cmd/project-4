@@ -2,6 +2,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { LoadingDots } from './common/Spinner'
 
 class JoinRequest extends React.Component {
 
@@ -29,7 +30,7 @@ class JoinRequest extends React.Component {
   }
 
   render() {
-    if (!this.state.join_requests) return <h1>Waiting</h1>
+    if (!this.state.join_requests) return <LoadingDots />
 
     const join_requests = this.state.join_requests
     return <>

@@ -5,6 +5,7 @@ import auth from '../lib/auth'
 import { Link } from 'react-router-dom'
 
 import Moment, { now } from 'moment'
+import { LoadingDots } from './common/Spinner'
 
 class ViewResidenceUser extends React.Component {
 
@@ -65,7 +66,7 @@ class ViewResidenceUser extends React.Component {
 
 
   render() {
-    if (!this.state.viewUser || !this.state.userProfile) return <h1>Waiting</h1>
+    if (!this.state.viewUser || !this.state.userProfile) return <LoadingDots />
     console.log(this.state.userProfile)
     const user = this.state.userProfile
     const residence = user.residences[0]

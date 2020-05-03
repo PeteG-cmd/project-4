@@ -37,7 +37,7 @@ class Login extends React.Component {
   }
 
   render() {
-    return <main className="hero is-fullheight">
+    return <main className="hero is-fullheight loginPage">
       <div className="hero-body">
         <div className="container">
           <section className="section">

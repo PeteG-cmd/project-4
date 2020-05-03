@@ -5,9 +5,11 @@ import auth from '../lib/auth'
 import { Link } from 'react-router-dom'
 
 import Moment, { now } from 'moment'
-import Spinner from './common/Spinner'
+import Spinner, { LoadingDots } from './common/Spinner'
 
 import JoinRequest from './JoinRequest'
+import HouseBillsFlow from './HouseBillsFlow'
+import HouseExpenses from './HouseExpenses'
 
 
 
@@ -114,7 +116,7 @@ export default class Home extends React.Component {
 
   render() {
 
-    if (!this.state.userProfile) return <h1>Waiting</h1>
+    if (!this.state.userProfile) return <LoadingDots />
     const user = this.state.userProfile
     const dashData = this.calculateDashboard()
     const groupedExpenses = this.groupExpenses()
@@ -122,6 +124,7 @@ export default class Home extends React.Component {
     console.log(typeof (groupedExpenses))
 
     console.log(this.state.userProfile)
+ 
 
     return <div>
 
@@ -134,11 +137,10 @@ export default class Home extends React.Component {
               join_requests={user.residences[0].join_requests}
               residenceId={user.residences[0].id}
               handleUpdate={(event) => this.handleUpdate(event)}
-
             />
-
           </div>}
         </div>
+
         <div className="column">
           <div className="box has-text-centered">
             <h1 className="title">Home</h1>
@@ -150,7 +152,6 @@ export default class Home extends React.Component {
               </div>
               <div>
                 {!user.residences[0] && !user.new_residence[0] && <p><Link to={'/createResidence'}>Click the house to get started...</Link></p>}
-                {/* {user.residences[0] && <p>House, click to see info</p>} */}
                 {user.new_residence[0] && <p>Awaiting approval from Admin</p>}
               </div>
             </div>
@@ -160,9 +161,7 @@ export default class Home extends React.Component {
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`${user.image}`}></img>}
-
                     {!user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
-
                   </p>
                 </Link>
               </div>
@@ -205,86 +204,18 @@ export default class Home extends React.Component {
         })}
       </div>
 
-
-
       <div className="columns">
         <div className="column is-half">
           {user.residences[0] && <div className="box">
-
-            <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
-            <Link to={'/expense/new'}><div className="box has-text-centered">
-              <button className='button is-fullwidth is-link'>Add and new expense</button>
-            </div></Link>
-
-            {user.residences[0] && groupedExpenses.map((groupedExpense, index) => {
-              return <div key={index} className='groupedExpense'>
-
-                <div
-                  className="column is-12-desktop expenseRowDisplay expenseRowDisplayGrouped"
-                  name={`grouped-${index}`}
-                  onClick={() => this.expenseClicked(`${groupedExpense[0].company_name}`, `grouped-${index}`)}
-                >
-                  <p>{groupedExpense[0].company_name}</p>
-                  <p>Bills Grouped: {groupedExpense.length}</p>
-                  <p>Latest Bill: {Moment(groupedExpense[0].expense_dated).format('DD MM YY')}</p>
-                </div>
-                {groupedExpense.map((expense, index) => {
-                  return <Link key={index} to={`/viewExpense/${expense.id}`}>
-                    <div
-                      className="column is-12-desktop expenseRowDisplay hiddenTab"
-                      name={expense.company_name}
-                    >
-                      <p>{expense.company_name}</p>
-                      <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
-                      <p>£{expense.amount}</p>
-                    </div></Link>
-
-                })}
-
-              </div>
-
-            })}
-
+            <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={this.expenseClicked} />
           </div>}
         </div>
 
 
         <div className="column is-half">
           <div className="box has-text-centered">
-            <h2 className='centeredTitle'>HOUSE TIMELINE</h2>
-            {user.residences[0] && <div className="columns is-multiline is-mobile">
-              {user.residences[0].tenants.map((tenant, index) => {
-                return <div key={index} className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile'>
-                  <div className="circleBox">
-                    <p className="image is-100x100">
-                      {tenant.image && <img className='is-rounded' src={`${tenant.image}`}></img>}
-                      {!tenant.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
-                    </p>
-                  </div>
-                  <div className="lineBox"></div>
-                  <div className="rectBox">
-                    <p>Overdue:</p>
-                    <p>£{(this.amountDueInDays(user, tenant, 0, -100000)).toLocaleString('en')}</p>
-                  </div>
-                  <div className="lineBox"></div>
-                  <div className="rectBox">
-                    <p>Due in next 7 days:</p>
-                    <p>£{(this.amountDueInDays(user, tenant, 8, -1)).toLocaleString('en')}</p>
-                  </div>
-                  <div className="lineBox"></div>
-                  <div className="rectBox">
-                    <p>Due in next 7 - 31 Days:</p>
-                    <p>£{(this.amountDueInDays(user, tenant, 32, 7)).toLocaleString('en')}</p>
-                  </div>
-                  <div className="lineBox"></div>
-                  <div className="rectBox">
-                    <p>Due in: 31 days +:</p>
-                    <p>£{(this.amountDueInDays(user, tenant, 1000000, 31)).toLocaleString('en')}</p>
-                  </div>
-                </div>
-              })}
-
-            </div>}
+            <HouseBillsFlow user={user} amountDueInDays={this.amountDueInDays} />
+           
           </div>
         </div>
       </div>
