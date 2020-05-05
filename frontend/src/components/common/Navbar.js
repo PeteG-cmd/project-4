@@ -73,7 +73,7 @@ class Navbar extends React.Component {
                 My Expenses
               </Link>
 
-              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
+              <Link to="/houseExpenses" className="navbar-item" onClick={() => this.togglenav()}>
                 House Expenses
               </Link>
 

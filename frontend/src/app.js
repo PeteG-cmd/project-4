@@ -18,6 +18,7 @@ import ViewResidenceUser from './components/ViewResidenceUser'
 import ViewExpense from './components/ViewExpense'
 import AddBillImage from './components/AddBillImage'
 import HouseShareWelcome from './components/HouseShareWelcome'
+import HouseExpensesFull from './components/HouseExpensesFull'
 
 
 const App = () => (
@@ -36,6 +37,7 @@ const App = () => (
       <Route exact path='/expense/new' component={CreateExpense} />
       <Route exact path='/viewResidenceUser' component={ViewResidenceUser} />
       <Route exact path='/viewExpense/:expense_id' component={ViewExpense} />
+      <Route exact path='/houseExpenses' component={HouseExpensesFull} />
 
       {/* <Route exact path='/register/usertype' component={UserType} /> */}
 

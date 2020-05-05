@@ -54,7 +54,7 @@ class Register extends React.Component {
             <div className="columns">
               <div className="column is-one-third"></div>
               <div className="column is-one-third">
-                <div className="box">
+                <div className="box transparent">
                   <h1 className="title">Register</h1>
                   <RegistrationForm
                     handleSubmit={(event) => this.handleSubmit(event)}

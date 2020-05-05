@@ -45,7 +45,7 @@ class Login extends React.Component {
               <div className="columns">
                 <div className="column is-one-third"></div>
                 <div className="column">
-                  <div className="box">
+                  <div className="box transparent">
                     <h1 className="title">Login</h1>
                    
                     <LoginForm

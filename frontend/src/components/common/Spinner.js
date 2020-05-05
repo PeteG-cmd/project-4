@@ -22,7 +22,7 @@ export const LoadingDots = () => {
   return <div className='Loading'>
     <Loader
       type='ThreeDots'
-      color='#383534'
+      color='#F08700'
       className='Loading'
       height={30}
       width={60}
