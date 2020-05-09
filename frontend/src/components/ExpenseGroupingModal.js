@@ -22,7 +22,7 @@ const ExpenseGroupingModal = ({ expense, groupClicked, cancelClicked }) => {
           <p>Expense Dated: {expense.expense_dated}</p>
           <div className='expense500Div'>
             <p className="image is-480x600">
-              <img src={'http://localhost:4000/media/bill_image/YourBTbill_13042020_W4b9GSl.jpg'}></img>
+              <img src={'expense.image'}></img>
             </p>
           </div>
           <p>If you do not wish to group these expenses, click cancel and select a new name for this expense.</p>

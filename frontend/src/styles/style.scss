@@ -38,7 +38,7 @@ body, html {
 
 .box {
   // background-color: rgb(245, 243, 231);
-  background-image: url('http://localhost:4000/media/assets/box_grey_bg2.jpg');
+  background-image: url('media/assets/box_grey_bg2.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   // background-color:rgb(243, 243, 224);
@@ -67,7 +67,7 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('http://localhost:4000/media/assets/t-h-d.png');
+  background-image: url('media/assets/t-h-d.png');
   background-repeat: no-repeat;
   background-position: top;
   background-size: contain;
@@ -80,18 +80,21 @@ body, html {
   margin: auto;
   padding: 2%;
   
+}
 
+.homeButtons > *{
+  margin: 30px;
 }
 
 .loginPage {
-  background-image: url('http://localhost:4000/media/assets/houses-bg.jpg');
+  background-image: url('media/assets/houses-bg.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
 
 .registerPage {
-  background-image: url('http://localhost:4000/media/assets/CPG_SKYLIGHT.jpg');
+  background-image: url('media/assets/CPG_SKYLIGHT.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -180,7 +183,7 @@ body, html {
 }
 
 .topBorder {
-  margin-top: 30%;
+  margin-top: 20%;
 }
 
 .lineBox {

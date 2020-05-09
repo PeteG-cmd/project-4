@@ -75,22 +75,11 @@ class ProfileImage extends React.Component {
       })
       .then(file => {
         this.setState({ image: file })
-
         return
       })
       .then(res => {
         console.log(this.state)
       })
-
-    // console.log(a)
-
-    // const formData = new FormData()
-    // formData.append('image', a, 'test')
-
-
-
-    // this.setState({ imagePreview: a })
-
   }
 
   getCroppedImg(image, crop, fileName) {
@@ -114,11 +103,6 @@ class ProfileImage extends React.Component {
       crop.height,
     )
 
-    // As Base64 string
-    // const base64Image = canvas.toDataURL('image/jpeg')
-    // return base64Image
-
-    // // As a blob
     return new Promise((resolve, reject) => {
       canvas.toBlob(blob => {
         blob.name = fileName
@@ -127,27 +111,11 @@ class ProfileImage extends React.Component {
     })
   }
 
-  // async test() {
-  //   const croppedImg = await this.getCroppedImg(image, crop, fileName)
-  // }
-
-
-
-
 
   render() {
     return <div className="columns">
       <div className="column is-half">
-        <div className="box has-text-centered">
-
-          {/* <div className='circleBox'>
-            {!this.state.imagePreview && <p className="image is-100x100">
-              <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>
-            </p>}
-            {this.state.imagePreview && <p className="image is-100x100">
-              <img className='is-rounded' src={this.state.imagePreview}></img>
-            </p>}
-          </div> */}
+        <div className="box has-text-centered growHeight">
 
           <ReactCrop src={this.state.imagePreview}
             crop={this.state.crop}
@@ -156,27 +124,21 @@ class ProfileImage extends React.Component {
             onComplete={(crop) => this.handleOnCropComplete(crop)}
           />
 
-
           <form
-
             className="form"
             onSubmit={(event) => this.handleSubmit(event)}
             encType='mutipart/form-data'
           >
-
             <input type="file"
               id="image"
               name='image'
               accept="image/png, image/jpeg" onChange={(image) => this.handleImageChange(image)} />
-
-           
-
           </form>
 
         </div>
       </div>
       <div className="column is-half">
-        <div className="box has-test-centered">
+        <div className="box has-test-centered growHeight">
           <div className='circleBox'>
 
             {this.state.cropImagePreview && <p className="image is-100x100">
