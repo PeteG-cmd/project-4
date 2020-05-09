@@ -156,4 +156,4 @@ class PopulatedUserViewSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = User
-    fields = ('id', 'username', 'email', 'first_name', 'second_name', 'image', 'residences', 'splits', 'moves')
+    fields = ('id', 'username', 'email', 'first_name', 'second_name', 'image', 'residences', 'splits', 'moves', 'past_residences')

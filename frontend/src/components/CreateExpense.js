@@ -219,7 +219,7 @@ class CreateExpense extends React.Component {
         <div className="box has-text-centered">
           <div className="columns is-multiline">
             <div className="column is-two-thirds">
-              <div className="box has-text-centered growHeight">
+              <div className="box has-text-centered growHeight white">
                 <h1 className="title">Add a new expense</h1>
 
 
@@ -364,7 +364,7 @@ class CreateExpense extends React.Component {
             </div>
 
             <div className="column is-one-third">
-              <div className="box has-text-centered growHeight">
+              <div className="box has-text-centered growHeight white">
                 <h1 className="title">How shoult this expense be split?</h1>
 
                 <button className='button' onClick={(event) => this.evenlyClicked(event)}>Evenly</button>
@@ -404,7 +404,7 @@ class CreateExpense extends React.Component {
 
 
             </div>
-            <div className="box has-tex-centered growWidth">
+            <div className="box has-tex-centered growWidth white">
               <div>
                 <button className="button is-success">Add Expense</button>
               </div>

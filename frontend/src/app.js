@@ -9,6 +9,7 @@ import './styles/style.scss'
 import Login from './components/Login'
 import Register from './components/Register'
 import Navbar from './components/common/Navbar'
+import Footer from './components/common/Footer'
 import Home from './components/Home'
 import AddProfileImage from './components/AddProfileImage'
 import CreateResidence from './components/CreateResidence'
@@ -19,6 +20,7 @@ import ViewExpense from './components/ViewExpense'
 import AddBillImage from './components/AddBillImage'
 import HouseShareWelcome from './components/HouseShareWelcome'
 import HouseExpensesFull from './components/HouseExpensesFull'
+import UserExpensesFull from './components/UserExpensesFull'
 
 
 const App = () => (
@@ -38,10 +40,12 @@ const App = () => (
       <Route exact path='/viewResidenceUser' component={ViewResidenceUser} />
       <Route exact path='/viewExpense/:expense_id' component={ViewExpense} />
       <Route exact path='/houseExpenses' component={HouseExpensesFull} />
+      <Route exact path='/userExpenses' component={UserExpensesFull} />
 
       {/* <Route exact path='/register/usertype' component={UserType} /> */}
 
     </Switch>
+    <Footer />
   </HashRouter>
 
 )

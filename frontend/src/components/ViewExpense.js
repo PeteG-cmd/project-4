@@ -1,5 +1,5 @@
 
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 
@@ -55,39 +55,40 @@ class ViewExpense extends React.Component {
             {/* <p>Description:</p> */}
             <p className='subtitle'>{expense.description}</p>
 
+            <div className="box">
+              <p>Expense Dated:{Moment(expense.expense_dated).format('Mo MMMM YYYY')}</p>
 
-            <p>Expense Dated:{Moment(expense.expense_dated).format('Mo MMMM YYYY')}</p>
+
+              {expense.date_to && expense.date_from && <div className="level">
+                <div className="level-item">
+                  <div className="rectBox">
+                    <p>Period Start:</p>
+                    {expense.date_from && <p>{Moment(expense.date_from).format('DD/MM/YYYY')}</p>}
+                  </div>
 
 
-            {expense.date_to && expense.date_from && <div className="level">
-              <div className="level-item">
-                <div className="rectBox">
-                  <p>Period Start:</p>
-                  {expense.date_from && <p>{Moment(expense.date_from).format('DD/MM/YYYY')}</p>}
+                  <div className="rectLineBoxTop">
+                    {expense.date_from && expense.date_to && <p>Period Length: {Moment(expense.date_to).diff(Moment(expense.date_from), 'days')} Days</p>}
+                  </div>
+
+
+                  <div className="rectBox">
+                    <p>Period End:</p>
+                    {expense.date_from && <p>{Moment(expense.date_to).format('DD/MM/YYYY')}</p>}
+                  </div>
+
                 </div>
-
-
-                <div className="rectLineBoxTop">
-                  {expense.date_from && expense.date_to && <p>Period Length: {Moment(expense.date_to).diff(Moment(expense.date_from), 'days')} Days</p>}
-                </div>
-
-
-                <div className="rectBox">
-                  <p>Period End:</p>
-                  {expense.date_from && <p>{Moment(expense.date_to).format('DD/MM/YYYY')}</p>}
-                </div>
-
-              </div>
-            </div>}
-
-            <p className='subtitle'>£{expense.amount}</p>
-            {expense.payment_due_date && <p className='subtitle'>Expense Due:{Moment(expense.payment_due_date).format('Mo MMMM YYYY')}</p>}
-
-            <div>
+              </div>}
+            </div>
+            <div className="box">
+              <p className='subtitle'>£{expense.amount.toLocaleString()}</p>
+              {expense.payment_due_date && <p className='subtitle'>Expense Due:{Moment(expense.payment_due_date).format('Mo MMMM YYYY')}</p>}
+            </div>
+            <div className='box'>
               <p className='subtitle'>This expense costs:</p>
-              {expense.date_to && expense.date_from && <p>Per Day: £{(expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')).toFixed(2)}</p>}
-              <p>Per User: £{(expense.amount / expense.splits.length).toFixed(2)}</p>
-              {expense.date_to && expense.date_from && <p>Per User per Day: £{((expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')) / expense.splits.length).toFixed(2)} </p>}
+              {expense.date_to && expense.date_from && <p>Per Day: £{(expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')).toLocaleString()}</p>}
+              <p>Per User: £{(expense.amount / expense.splits.length).toLocaleString()}</p>
+              {expense.date_to && expense.date_from && <p>Per User per Day: £{((expense.amount / Moment(expense.date_to).diff(Moment(expense.date_from), 'days')) / expense.splits.length).toLocaleString()} </p>}
             </div>
 
             <br></br>

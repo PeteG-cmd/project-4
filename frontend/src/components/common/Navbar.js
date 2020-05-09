@@ -54,12 +54,12 @@ class Navbar extends React.Component {
             </a>
             <div className="navbar-dropdown">
               <div id="AllBooksNav"></div>
-              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
-                <p>With my House</p>
+              <Link to="/userExpenses" className="navbar-item" onClick={() => this.togglenav()}>
+                <p>My Splits</p>
               </Link>
-              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
+              {/* <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 With another user
-              </Link>
+              </Link> */}
             </div>
           </div>}
 

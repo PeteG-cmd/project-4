@@ -5,7 +5,7 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
 export const Spinner = () => {
 
-  return <div className='Loading'>
+  return <div className='Loading box has-text-centered white'>
     <Loader
       type='TailSpin'
       color='#00BFFF'
@@ -19,7 +19,7 @@ export const Spinner = () => {
 
 export const LoadingDots = () => {
 
-  return <div className='Loading'>
+  return <div className='Loading box has-text-centered white'>
     <Loader
       type='ThreeDots'
       color='#F08700'

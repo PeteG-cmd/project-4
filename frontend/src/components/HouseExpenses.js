@@ -9,8 +9,8 @@ const HouseExpenses = ({ user, groupedExpenses, expenseClicked }) => {
   return (
     <>
 
-      <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
-      <Link to={'/expense/new'}><div className="box has-text-centered">
+      
+      <Link to={'/expense/new'}><div className="has-text-centered">
         <button className='button is-fullwidth is-link'>Add and new expense</button>
       </div></Link>
 
@@ -24,7 +24,7 @@ const HouseExpenses = ({ user, groupedExpenses, expenseClicked }) => {
           >
             <p>{groupedExpense[0].company_name}</p>
             <p>Bills Grouped: {groupedExpense.length}</p>
-            <p>Latest Bill: {Moment(groupedExpense[0].expense_dated).format('DD MM YY')}</p>
+            <p>Latest Bill: {Moment(groupedExpense[0].expense_dated).format('DD/MM/YY')}</p>
           </div>
           {groupedExpense.map((expense, index) => {
             return <Link key={index} to={`/viewExpense/${expense.id}`}>
@@ -34,7 +34,7 @@ const HouseExpenses = ({ user, groupedExpenses, expenseClicked }) => {
               >
                 <p>{expense.company_name}</p>
                 <p>{Moment(expense.expense_dated).format('Do MMMM YYYY')}</p>
-                <p>£{expense.amount}</p>
+                <p>£{expense.amount.toLocaleString()}</p>
               </div></Link>
 
           })}

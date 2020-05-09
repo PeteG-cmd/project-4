@@ -11,16 +11,18 @@ import HouseExpenses from './HouseExpenses'
 const HouseExpensesFull = () => {
 
   const [user, setUser] = useState([])
-  let groupedExpenses = null
+  const [groupedExpenses, setGroupedExpenses] = useState([])
+
 
   useEffect(() => {
     axios.get('/api/userprofile/', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         setUser(res.data)
         console.log(res.data)
-        return groupedExpenses = groupExpenses(res.data)
+        setGroupedExpenses(groupExpenses(res.data))
+        // return groupedExpense = groupExpenses(res.data)
       })
-      .then(res => console.log(groupedExpenses))
+    // .then(res => console.log(groupedExpenses))
   }, [])
 
   function sortByDate(splits) {
@@ -32,10 +34,10 @@ const HouseExpensesFull = () => {
     return sortedSplits
   }
 
-  function groupExpenses(user1) {
+  function groupExpenses(data) {
     // if (!user.residences[0]) return
     const groupedExpenses = {}
-    sortByDate(user1.residences[0].expenses).map(expense => {
+    sortByDate(data.residences[0].expenses).map(expense => {
       if (!groupedExpenses[expense.company_name]) {
         groupedExpenses[expense.company_name] = [expense]
       } else {
@@ -66,9 +68,12 @@ const HouseExpensesFull = () => {
 
 
   return (
+
     <>
-    {user.id && groupedExpenses && <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={expenseClicked} />}
-      
+       {!user.id && <LoadingDots />}
+      {user.id && groupedExpenses && <h1 className="title has-text-centered">All expenses for {user.residences[0].short_name}</h1>}
+      {user.id && groupedExpenses && <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={expenseClicked} />}
+
     </>
   )
 

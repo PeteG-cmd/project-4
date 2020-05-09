@@ -111,7 +111,7 @@ export default class Home extends React.Component {
     return amount
   }
 
-  
+
 
 
   render() {
@@ -124,21 +124,21 @@ export default class Home extends React.Component {
     console.log(typeof (groupedExpenses))
 
     console.log(this.state.userProfile)
- 
+
 
     return <div>
 
       <div className="columns">
         <div className="column">
-          {user.residences[0] && user.id === user.residences[0].admin_user.id && <div className="box has-text-centered growHeight">
+          <div className="box has-text-centered growHeight">
 
             <h1 className="subtitle">Users Awaiting Approval</h1>
-            <JoinRequest
+            {user.residences[0] && user.id === user.residences[0].admin_user.id && <JoinRequest
               join_requests={user.residences[0].join_requests}
               residenceId={user.residences[0].id}
               handleUpdate={(event) => this.handleUpdate(event)}
-            />
-          </div>}
+            />}
+          </div>
         </div>
 
         <div className="column">
@@ -151,7 +151,7 @@ export default class Home extends React.Component {
                 </p>
               </div>
               <div>
-                {!user.residences[0] && !user.new_residence[0] && <p><Link to={'/createResidence'}>Click the house to get started...</Link></p>}
+                {!user.residences[0] && !user.new_residence[0] && <p><Link to={'/createResidence'}>Click to get started...</Link></p>}
                 {user.new_residence[0] && <p>Awaiting approval from Admin</p>}
               </div>
             </div>
@@ -174,9 +174,15 @@ export default class Home extends React.Component {
         <div className="column">
           <div className="box has-text-centered growHeight dashboard">
             <h1 className="subtitle">Dashboard</h1>
-            <p>Current balance: £</p>
-            {user.residences[0] && <p>Open Expenses: £{dashData.openExpenses.toFixed(2)}</p>}
-            {user.residences[0] && <p>Settled Expenses: £{dashData.settledExpenses.toFixed(2)}</p>}
+            <div className="box">
+              <p>Current balance: £0</p>
+            </div>
+            {user.residences[0] &&  <div className="box">
+              <p>Open Expenses: £{dashData.openExpenses.toLocaleString('en')}</p>
+            </div>}
+            {user.residences[0] &&  <div className="box">
+              <p>Settled Expenses: £{dashData.settledExpenses.toLocaleString('en')}</p>
+            </div>}
             {!user.residences[0] && user.splits[0] && <button className='button is-warning is-full-width'>See Expenses from previous House</button>}
 
             <p></p>
@@ -206,16 +212,17 @@ export default class Home extends React.Component {
 
       <div className="columns">
         <div className="column is-half">
-          {user.residences[0] && <div className="box">
-            <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={this.expenseClicked} />
-          </div>}
+          <div className="box growHeight">
+          <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
+            {user.residences[0] && <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={this.expenseClicked} />}
+          </div>
         </div>
 
 
         <div className="column is-half">
-          <div className="box has-text-centered">
+          <div className="box has-text-centered growHeight">
             <HouseBillsFlow user={user} amountDueInDays={this.amountDueInDays} />
-           
+
           </div>
         </div>
       </div>

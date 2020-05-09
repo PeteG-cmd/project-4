@@ -24,10 +24,19 @@ class isOwnerOrAdminOrReadOnly(BasePermission):
       return True
     
     return request.user == obj.admin_user or request.user == obj.user
-   
 
+class isCurrentlyInResidenceWithUser(BasePermission):
 
-
+  def has_object_permission(self, request, view, obj):
+    current_user = request.user
+    print(current_user)
+    print(obj)
+    residences = current_user.residences.all()
+    for residence in residences:
+      tenants = residence.tenants.all()
+      for tenant in tenants:
+        if tenant == obj:
+          return True
 
 class AddressListView(ListCreateAPIView):
 
@@ -101,9 +110,19 @@ class ResidenceUsersControll(ListCreateAPIView):
           serializer = PopulatedResidenceSerializer(residence)
           return Response({ 'join_request': serializer.data}, status=HTTP_202_ACCEPTED)
 
+
+
 class ResidenceSingleUserControll(ListCreateAPIView):
     queryset = Residence.objects.all()
     serializer_class = ResidenceSerializer
+
+    permission_classes = (isCurrentlyInResidenceWithUser),
+
+    def get(self, request):
+      print(request.data)
+      current_user = request.user
+      serializer = PopulatedUserViewSerializer(current_user)
+      return Response(serializer.data, status=HTTP_202_ACCEPTED)
 
     # This is being used as the detail view for any member of the residence to see. Only the admin user or the user will be able to 'put' from this view, but all residents can get
     def post(self, request):
@@ -111,6 +130,7 @@ class ResidenceSingleUserControll(ListCreateAPIView):
       current_user = request.user
       serializer_f = UserSerializer(current_user)
       user = User.objects.get(id=request.data['id'])
+      self.check_object_permissions(request, user)
       serializer = PopulatedUserViewSerializer(user)
       
       return Response({'user_profile': serializer.data, 'current_user': serializer_f.data })
