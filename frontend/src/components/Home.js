@@ -147,7 +147,7 @@ export default class Home extends React.Component {
             <div>
               <div className='circleBox'>
                 <p className="image is-100x100">
-                  <img className='is-rounded' src={'media/assets/round-logo-1.jpg'}></img>
+                  <img className='is-rounded' src={'http://localhost:4000/media/assets/round-logo-1.jpg'}></img>
                 </p>
               </div>
               <div>
@@ -160,8 +160,8 @@ export default class Home extends React.Component {
               <div className='circleBox'>
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
-                    {user.image && <img className='is-rounded' src={`${user.image}`}></img>}
-                    {!user.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
+                    {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
+                    {!user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
                   </p>
                 </Link>
               </div>
@@ -177,10 +177,10 @@ export default class Home extends React.Component {
             <div className="box">
               <p>Current balance: £0</p>
             </div>
-            {user.residences[0] &&  <div className="box">
+            {user.residences[0] && <div className="box">
               <p>Open Expenses: £{dashData.openExpenses.toLocaleString('en')}</p>
             </div>}
-            {user.residences[0] &&  <div className="box">
+            {user.residences[0] && <div className="box">
               <p>Settled Expenses: £{dashData.settledExpenses.toLocaleString('en')}</p>
             </div>}
             {!user.residences[0] && user.splits[0] && <button className='button is-warning is-full-width'>See Expenses from previous House</button>}
@@ -190,7 +190,12 @@ export default class Home extends React.Component {
         </div>
       </div>
 
-
+      <div className="box has-text-centered white">
+        <h1 className="title">
+          Current Tenants
+  </h1>
+  </div>
+      
       <div className="columns is-multiline is-mobile">
         {user.residences[0] && user.residences[0].tenants.map((tenant, index) => {
           return <div key={index} className="column is-3-desktop is-4-tablet is-half-mobile has-text-centered">
@@ -198,10 +203,10 @@ export default class Home extends React.Component {
               <p>{tenant.username}</p>
               <div className='circleBox'>
                 {!tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>
+                  <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
                 </p>}
                 {tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={`${tenant.image}`}></img>
+                  <img className='is-rounded' src={`http://localhost:4000${tenant.image}`}></img>
                 </p>}
               </div>
             </div></Link>
@@ -209,11 +214,12 @@ export default class Home extends React.Component {
           </div>
         })}
       </div>
+      
 
       <div className="columns">
         <div className="column is-half">
           <div className="box growHeight">
-          <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
+            <h2 className='centeredTitle'>CURRENT EXPENSES</h2>
             {user.residences[0] && <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={this.expenseClicked} />}
           </div>
         </div>

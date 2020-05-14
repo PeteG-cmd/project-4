@@ -145,9 +145,12 @@ class ProfileImage extends React.Component {
               <img className='is-rounded' src={this.state.cropImagePreview}></img>
             </p>}
           </div>
-          <button className="button is-success" onClick={(event) => this.handleSubmit(event)} >
+          <div>
+            <button className="button is-success is-fullwidth" onClick={(event) => this.handleSubmit(event)} >
+
               Upload Image
           </button>
+          </div>
         </div>
       </div>
     </div>

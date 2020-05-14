@@ -15,8 +15,8 @@ const HouseBillsFlow = ({ user, amountDueInDays }) => {
           return <div key={index} className='column is-one-quarter-desktop is-one-third-tablet is-half-mobile'>
             <div className="circleBox">
               <p className="image is-100x100">
-                {tenant.image && <img className='is-rounded' src={`${tenant.image}`}></img>}
-                {!tenant.image && <img className='is-rounded' src={'media/assets/user-placeholder.jpg'}></img>}
+                {tenant.image && <img className='is-rounded' src={`http://localhost:4000${tenant.image}`}></img>}
+                {!tenant.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
               </p>
             </div>
             <div className="lineBox"></div>

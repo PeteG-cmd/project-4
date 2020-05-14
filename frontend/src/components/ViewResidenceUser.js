@@ -82,7 +82,7 @@ class ViewResidenceUser extends React.Component {
 
             <div className='imageDiv150'>
               <figure className='image is-150x150'>
-                <img src={`${user.image}`}></img>
+                <img src={`http://localhost:4000${user.image}`}></img>
               </figure>
             </div>
             <p>Name: {user.first_name} {user.second_name}</p>
@@ -124,11 +124,11 @@ class ViewResidenceUser extends React.Component {
                   </div>
                   <div className="level-item level-item-user has-text-centered">
                     <h5 className='mobileShow'>Total Amount:</h5>
-                    <p>£{split.expense.amount}</p>
+                    <p>£{split.expense.amount.toLocaleString()}</p>
                   </div>
                   <div className="level-item level-item-user has-text-centered">
                     <h5 className='mobileShow'>Amount Owed:</h5>
-                    <p>£{split.percentage_to_pay}</p>
+                    <p>£{(split.percentage_to_pay).toLocaleString()}</p>
                   </div>
                   
                   {split.user.id === this.state.currentUser.id && <div className="level-item level-item-user has-text-centered">
@@ -164,11 +164,11 @@ class ViewResidenceUser extends React.Component {
                   </div>
                   <div className="level-item level-item-user has-text-centered">
                     <h5 className='mobileShow'>Total Amount:</h5>
-                    <p>£{split.expense.amount}</p>
+                    <p>£{split.expense.amount.toLocaleString()}</p>
                   </div>
                   <div className="level-item level-item-user has-text-centered">
                     <h5 className='mobileShow'>Amount Paid:</h5>
-                    <p>£{split.percentage_to_pay}</p>
+                    <p>£{split.percentage_to_pay.toLocaleString()}</p>
                   </div>
                 </div>}
               </div>
