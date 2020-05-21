@@ -6,7 +6,7 @@ House-Share is my first project using Django on the back end, and the final proj
 
 For this project I chose to work alone, and was challenged to build a full-stack application of my choice in one week.
 
-After some though I decided to create an application that would allow users to sign up and create groups to split expenses between members of their house hold, and provide summaries and analysis of the current position of each member and the household as a whole.
+After some thought, I decided to create an application that would allow users to sign up and create groups to split expenses between members of their household, and provide summaries and analysis of the current position of each member and the household as a whole.
 
 <img src='project/media/assets/House-Share_signup.png'>
 
@@ -18,7 +18,7 @@ You can view the project [here](https://m-house-s.herokuapp.com)
 
 ## The Brief
 
-* **Build a full-stack application** by making your own backend and your own front-end from scratch
+* **Build a full-stack application** by making the backend and the frontend from scratch
 * **Use a Python Django API** using Django REST Framework to serve your data from a Postgres database
 * **Consume your API with a separate front-end** built with React
 * **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
@@ -37,9 +37,9 @@ You can view the project [here](https://m-house-s.herokuapp.com)
 
 ## The Approach
 
-For this application I started by implementing the required authentication and user classes to allow users to register and log in. For this I extended the Django Basic Auth classes with JWT Auth to issue and renew tokens. 
+For this application, I started by implementing the required authentication and user classes to allow users to register and log in. For this, I extended the Django Basic Auth classes with JWT Auth to issue and renew tokens. 
 
-To this I added an image attribute and class to allow this information to be stored on the user model for convenience.
+To this, I added an image attribute and class to allow this information to be stored on the user model for convenience.
 
 	class UpdateProfileViev(RetrieveUpdateDestroyAPIView):
 	
@@ -65,7 +65,7 @@ Apart from the image, I also added name attributes to the model to allow them to
 	    image = models.ImageField(upload_to='profile_image', null=True)
 	    
 
-At this point I left the user model as the remaining information would be stored in other models, which is discussed in more detail below.
+At this point, I left the user model as the remaining information would be stored in other models, which is discussed in more detail below.
 
 
 ## The Models
@@ -89,11 +89,11 @@ This model can be seen below.
 	    return f'{self.short_name}'
 	    
 
-Taking this approach allowed me to quickly retrieve data to return to the user in a single object, however as users are able to leave residences (when they move out for example), I used 2 other models for the expenses and the splits.
+Taking this approach allowed me to quickly retrieve data to return to the user in a single object; however, as users are able to leave residences (when they move out for example), I used 2 other models for the expenses and the splits.
 
 ### The 'Expense' Model
 
-Within the expenses model I decided to make the majority of the fields optional to make it as easy as possible for the user to input an expense, whilst giving the option to input more data to provide better and more in depth analytics if required. 
+Within the expenses model, I decided to make the majority of the fields optional to make it as easy as possible for the user to input an expense, whilst giving the option to input more data to provide better and more in-depth analytics if required. 
 
 The Expense model can be seen below.
 
@@ -294,7 +294,7 @@ For this project I tried to use as much re-usable code as possible and make sure
 
 
 ### Expense input form
-Another particularly important page, especially from a UX point of view was the expense input page, and i spent a lot of time on this. 
+Another particularly important page, especially from a UX point of view was the expense input page, and I spent a lot of time on this. 
 
 This allows users to input an expense which is automatically split evenly between the current group members. If the expense is not exactly divisible by the amount of members, the positive or negative difference is allocated to the user inputting the expense. 
 
@@ -307,9 +307,9 @@ The user also has the option to split the expense in custom amounts. Before the 
 
 ### Automatic Expense Grouping
 
-Another feature of the form input is the ability to group expenses with the same name. This is done automatically, but is flagged to the user and they are given the option not to group the expense if for any reason they don't want to. If they do not then a unix timestamp is added to the name to differentiate it in the views. Ideally i would like to change this to make it look a little better, but with the deadline for submission approaching I did not have time to go back and improve this. 
+Another feature of the form input is the ability to group expenses with the same name. This is done automatically, but is flagged to the user and they are given the option not to group the expense if for any reason they don't want to. If they do not then a unix timestamp is added to the name to differentiate it in the views. Ideally I would like to change this to make it look a little better, but with the deadline for submission approaching I did not have time to go back and improve this. 
 
-An example of the Expense Grouping Modal shown to the user, a non grouped expense, and the grouped expense view is below.
+An example of the Expense Grouping 'Modal' shown to the user, a non-grouped expense, and the grouped expense view is below.
 
 <img src='project/media/assets/house-share-grouped_expense.png'>
 
@@ -338,12 +338,12 @@ In all the views there are simple functions used to ensure as expenses are moved
 
 ### Image Uploads
 
-As I wanted to use the uploaded user images for several views around the site, it was important these were always square, so that i could convert these to round images. In order to do this I used React-Crop to provide some additional functionality and a separate page to allow users to crop and upload pictures.
+As I wanted to use the uploaded user images for several views around the site, it was important these were always square, so that I could convert these to round images. In order to do this, I used React-Crop to provide some additional functionality and a separate page to allow users to crop and upload pictures.
 
 <img src='project/media/assets/house-share-profile_upload.png'>
 
 
-This code was taken from the React-crop documentation, and although it required a few amendments to get it to work properly in the way I needed, there are elements of using a canvas that I have still not got completely to grips with and will be spending more time on this in future.
+This code was taken from the React-crop documentation, and although it required a few amendments to get it to work properly in the way I needed, there are elements of using a canvas that I have still not got completely to grips with and will be spending more time on this in the future.
 
 	getCroppedImg(image, crop, fileName) {
 	    const canvas = document.createElement('canvas')
@@ -377,22 +377,22 @@ This code was taken from the React-crop documentation, and although it required 
 
 ## Further Development
 
-Taking this further there are some elements that need development. Currently a lot of the validation for uploading expenses and images is done completely on the front end, and before this app was used in the real world I would want to implement the remaining back end validations that i did not have time to do in the original time frame. This would be especially important for the image uploads which could not only cause invalid data, but could cause bigger issues for the server.
+Taking this further there are some elements that need development. Currently, a lot of the validation for uploading expenses and images is done completely on the front end, and before this app was used in the real world, I would want to implement the remaining back end validations that I did not have time to do in the original time frame. This would be especially important for the image uploads which could not only cause invalid data, but could cause bigger issues for the server.
 
-The second part of further development I would like to do is to implement the pages for users to upload details and images of spare rooms they available, which other users can then search and find. The models on the back end are implemented for this, but i did not have time to create the React pages and views.
+The second part of further development I would like to do is to implement the pages for users to upload details and images of spare rooms they available, which other users can then search and find. The models on the back end are implemented for this, but I did not have time to create the React pages and views.
 
-Another useful feature to develop would be stricter validation around date ranges. Currently users can enter multiple grouped bills that can overlap in date range. Although this may sometimes be intended i would like to check that with the user to provide better analytics back to the group on monthly and annual expenses.
+Another useful feature to develop would be stricter validation around date ranges. Currently users can enter multiple grouped bills that can overlap in date range. Although this may sometimes be intended I would like to check that with the user to provide better analytics back to the group on monthly and annual expenses.
 
 
 ## Challenges
 
-One of the challenges was to get the serializers set up correctly to provide only the required information back to the user in each situation. Currently there are situations where a lot of information is provided that is not needed, and in the long term this could become very inefficient when it is not needed. In order to completely solve this I would have needed more time to create considerably more end-points, and this is something I did not have time to do within the time limit for the project.
+One of the challenges was to get the serializers set up correctly to provide only the required information back to the user in each situation. Currently, there are situations where a lot of information is provided that is not needed, and in the long term this could become very inefficient when it is not needed. In order to completely solve this, I would have needed more time to create considerably more end-points, and this is something I did not have time to do within the time limit for the project.
 
 Another challenge was implementing the 'by date' function on the expense input form, and this is still not working correctly. The issue is that the needed information is not available in the initial user object, and so I need to have a look at amending the expense serializer to provide this for use by the form if needed.
 
 ## Successes
 
-One of the biggest successes of this project was getting to grips with the Django framework. Luckily I had some prior experience using Ruby on Rails when I was programming as a hobby, and although there are some considerable differences with Django, overall I think this really helped with understanding some of the same methodologies used.
+One of the biggest successes of this project was getting to grips with the Django framework. Luckily, I had some prior experience using Ruby on Rails when I was programming as a hobby, and although there are some considerable differences with Django, overall I think this really helped with understanding some of the same methodologies used.
 
 I am also very happy with the way this app looks on mobile, and throughout the whole process developed for mobile first, and I am very happy with how this turned out. This has not always been the case with past projects and so I wanted to make sure this app was completely usable on both mobile and desktop.
 
@@ -401,7 +401,7 @@ Another success is a simple one, but getting to grips with using 'Moment' was a 
 
 ## Lessons Learnt
 
-One of the main lessons from this project, especially in Django is around using the Base User object. Although it is incredibly useful for things like authorisation, it also has its limitations, and I ended up re-structuring some of the models to avoid putting attributes on the User model. In hindsight I would create a 'User Profile' model and relate it to the user, and use this to store all the additional user information I wanted in one place.
+One of the main lessons learnt from this project, especially in Django, is about using the Base User object. Although it is incredibly useful for things like authorisation, it also has its limitations, and I ended up re-structuring some of the models to avoid putting attributes on the User model. In hindsight, I would create a 'User Profile' model and relate it to the user, and use this to store all the additional user information I wanted in one place.
 
-The second lesson is to make the choice between using React Hooks or React Classes and stick to one. As I was still learning about hooks as I was working on this project I have used a mixture of both, and I realise this is not ideal and for clarity I should always be consistent with one or the other.
+The second lesson is to make the choice between using React Hooks or React Classes and stick to one. As I was still learning about hooks as I was working on this project I, have used a mixture of both, and I realised this is not ideal and for clarity I should always be consistent with one or the other.
 

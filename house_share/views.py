@@ -29,8 +29,6 @@ class isCurrentlyInResidenceWithUser(BasePermission):
 
   def has_object_permission(self, request, view, obj):
     current_user = request.user
-    print(current_user)
-    print(obj)
     residences = current_user.residences.all()
     for residence in residences:
       tenants = residence.tenants.all()
