@@ -21,10 +21,26 @@ function getUserId() {
   return JSON.parse(atob(parts[1])).sub
 }
 
+function getPayload() {
+  const token = getToken()
+  if (!token) return false
+  const parts = token.split('.')
+  if (parts.length < 3) return false
+  return JSON.parse(atob(parts[1]))
+}
+function isAuthenticated() {
+  const payload = getPayload()
+  if (!payload) return false
+  const now = Math.round(Date.now() / 1000)
+  console.log(payload, now)
+  return now < payload.exp
+}
+
 export default {
   setToken,
   getToken,
   isLoggedIn,
   getUserId,
-  logout
+  logout,
+  isAuthenticated
 }

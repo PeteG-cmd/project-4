@@ -30,7 +30,7 @@ export default class Home extends React.Component {
       })
       .catch(err => {
         this.setState({ error: err.response.data.message })
-        this.props.history.push('/houseShareWelcome')
+        // this.props.history.push('/houseShareWelcome')
       })
   }
 
@@ -116,6 +116,9 @@ export default class Home extends React.Component {
 
   render() {
 
+    if (!auth.isAuthenticated()) this.props.history.push('/login')
+
+
     if (!this.state.userProfile) return <LoadingDots />
     const user = this.state.userProfile
     const dashData = this.calculateDashboard()
@@ -161,7 +164,7 @@ export default class Home extends React.Component {
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
                     {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
-                    {!user.image && <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>}
+                    {!user.image && <img className='is-rounded' src={'/media/assets/user-placeholder.jpg'}></img>}
                   </p>
                 </Link>
               </div>
@@ -194,8 +197,8 @@ export default class Home extends React.Component {
         <h1 className="title">
           Current Tenants
   </h1>
-  </div>
-      
+      </div>
+
       <div className="columns is-multiline is-mobile">
         {user.residences[0] && user.residences[0].tenants.map((tenant, index) => {
           return <div key={index} className="column is-3-desktop is-4-tablet is-half-mobile has-text-centered">
@@ -214,7 +217,7 @@ export default class Home extends React.Component {
           </div>
         })}
       </div>
-      
+
 
       <div className="columns">
         <div className="column is-half">
