@@ -150,7 +150,7 @@ export default class Home extends React.Component {
             <div>
               <div className='circleBox'>
                 <p className="image is-100x100">
-                  <img className='is-rounded' src={'http://localhost:4000/media/assets/round-logo-1.jpg'}></img>
+                  <img className='is-rounded' src={'/media/assets/round-logo-1.jpg'}></img>
                 </p>
               </div>
               <div>
@@ -163,7 +163,7 @@ export default class Home extends React.Component {
               <div className='circleBox'>
                 <Link to={'/addProfileImage'}>
                   <p className="image is-100x100">
-                    {user.image && <img className='is-rounded' src={`http://localhost:4000${user.image}`}></img>}
+                    {user.image && <img className='is-rounded' src={`${user.image}`}></img>}
                     {!user.image && <img className='is-rounded' src={'/media/assets/user-placeholder.jpg'}></img>}
                   </p>
                 </Link>
