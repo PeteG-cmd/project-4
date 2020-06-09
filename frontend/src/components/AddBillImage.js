@@ -45,7 +45,7 @@ class BillImage extends React.Component {
 
           <div >
             {!this.state.imagePreview && <p className="image is-100x100">
-              <img src={'http://localhost:4000/media/assets/expense-placeholder.jpg'}></img>
+              <img src={'/media/assets/expense-placeholder.jpg'}></img>
             </p>}
             {this.state.imagePreview && <p className="image is-100x100">
               <img src={this.state.imagePreview}></img>

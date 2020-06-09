@@ -39,7 +39,7 @@ class JoinRequest extends React.Component {
           <p>{request.first_name} {request.second_name}</p>
           <div className='imageDiv50'>
             <figure className='image is-32x32'>
-              <img src={`http://localhost:4000${request.image}`}></img>
+              <img src={`${request.image}`}></img>
             </figure>
           </div>
           <button className='button is-small is-success' value='accept' onClick={(event) => this.handleRequest(request.id, event)}>Accept</button>

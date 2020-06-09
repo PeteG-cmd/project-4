@@ -206,10 +206,10 @@ export default class Home extends React.Component {
               <p>{tenant.username}</p>
               <div className='circleBox'>
                 {!tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={'http://localhost:4000/media/assets/user-placeholder.jpg'}></img>
+                  <img className='is-rounded' src={'/media/assets/user-placeholder.jpg'}></img>
                 </p>}
                 {tenant.image && <p className="image is-100x100">
-                  <img className='is-rounded' src={`http://localhost:4000${tenant.image}`}></img>
+                  <img className='is-rounded' src={`${tenant.image}`}></img>
                 </p>}
               </div>
             </div></Link>

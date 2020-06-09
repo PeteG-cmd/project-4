@@ -82,7 +82,7 @@ class ViewResidenceUser extends React.Component {
 
             <div className='imageDiv150'>
               <figure className='image is-150x150'>
-                <img src={`http://localhost:4000${user.image}`}></img>
+                <img src={`${user.image}`}></img>
               </figure>
             </div>
             <p>Name: {user.first_name} {user.second_name}</p>

@@ -25,7 +25,7 @@ class Navbar extends React.Component {
     return <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img src="http://localhost:4000/media/assets/TitlesArtboard1.jpg" width="112" height="28" />
+          <img src="/media/assets/TitlesArtboard1.jpg" width="112" height="28" />
         </a>
         
 
