@@ -212,7 +212,7 @@ class CreateExpense extends React.Component {
 
   render() {
     const errors = this.state.errors
-    if (!this.state.userProfile || this.state.splits.length < this.state.userProfile.residences[0].tenants.length) return <LoadingDots />
+    if (!this.state.userProfile || this.state.splits.length < this.state.userProfile.residences[0].tenants.length) return <> <LoadingDots /> <p className='subtitle has-text-centered'>You must be a member of group before you can add new expenses.</p> </> 
     return <div>
       <ExpenseGroupingModal expense={this.state.expense} groupClicked={(event) => this.groupClicked(event)} cancelClicked={(event) => this.cancelClicked(event) }/>
       <form className='form' onSubmit={(event) => this.handleSubmit(event)}>
