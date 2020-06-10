@@ -21,7 +21,7 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const isLoggedIn = auth.isLoggedIn()
+    const isLoggedIn = auth.isAuthenticated()
     return <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
@@ -68,16 +68,16 @@ class Navbar extends React.Component {
               Expenses
             </a>
             <div className="navbar-dropdown">
-              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
+              {/* <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
                 My Expenses
-              </Link>
+              </Link> */}
 
               <Link to="/houseExpenses" className="navbar-item" onClick={() => this.togglenav()}>
                 House Expenses
               </Link>
 
-              <Link to="#" className="navbar-item" onClick={() => this.togglenav()}>
-                Settled Expenses
+              <Link to="/expense/new" className="navbar-item" onClick={() => this.togglenav()}>
+                Add a new expense
               </Link>
             </div>
           </div>}
@@ -88,7 +88,7 @@ class Navbar extends React.Component {
             <div className="buttons">
               {!isLoggedIn && <div className="button is-primary"><Link to="/register" onClick={() => this.togglenav()}><strong>Register</strong></Link></div>}
               {!isLoggedIn && <div className="button is-light" onClick={() => this.togglenav()}><Link to="/login">Log in</Link></div>}
-              {isLoggedIn && <div className="button is-warning" onClick={() => this.togglenav()}><Link to="#">Profile</Link></div>}
+              {/* {isLoggedIn && <div className="button is-warning" onClick={() => this.togglenav()}><Link to="#">Profile</Link></div>} */}
               {isLoggedIn && <div
                 onClick={() => this.handleLogout()}
                 className="button is-light"

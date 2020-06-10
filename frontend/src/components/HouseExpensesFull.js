@@ -71,7 +71,7 @@ const HouseExpensesFull = () => {
 
     <>
        {!user.id && <LoadingDots />}
-      {user.id && groupedExpenses && <h1 className="title has-text-centered">All expenses for {user.residences[0].short_name}</h1>}
+      {user.id && user.residences[0] && groupedExpenses && <h1 className="title has-text-centered">All expenses for {user.residences[0].short_name}</h1>}
       {user.id && groupedExpenses && <HouseExpenses user={user} groupedExpenses={groupedExpenses} expenseClicked={expenseClicked} />}
 
     </>

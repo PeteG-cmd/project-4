@@ -42,12 +42,19 @@ class RoomSerializer(serializers.ModelSerializer):
     model = Room
     fields = ('id', 'available_from', 'for_duration', 'room_details', 'image', 'cost_per_week', 'residence', 'user')
 
+class PopulatedNeededExpenseSerializer(serializers.ModelSerializer):
+
+  residence = ResidenceSerializer()
+  class Meta:
+    model = Expense
+    fields = ('residence', 'company_name', 'amount')
 
 class PopulatedSplitSerializer(serializers.ModelSerializer):
 
   user = UserSerializer()
   admin_user = UserSerializer()
-  expense = ExpenseSerializer()
+  expense = PopulatedNeededExpenseSerializer()
+
 
   class Meta:
     model = Split
