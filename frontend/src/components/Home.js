@@ -186,7 +186,7 @@ export default class Home extends React.Component {
             {user.residences[0] && <div className="box">
               <p>Settled Expenses: £{dashData.settledExpenses.toLocaleString('en')}</p>
             </div>}
-            {!user.residences[0] && user.splits[0] && <button className='button is-warning is-full-width'>See Expenses from previous House</button>}
+            {!user.residences[0] && user.splits[0] &&  <Link to="/userExpenses"><button className='button is-warning is-full-width'>See Expenses from previous House</button></Link>}
 
             <p></p>
           </div>

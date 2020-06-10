@@ -47,7 +47,7 @@ class PopulatedNeededExpenseSerializer(serializers.ModelSerializer):
   residence = ResidenceSerializer()
   class Meta:
     model = Expense
-    fields = ('residence', 'company_name', 'amount')
+    fields = ('id', 'residence', 'company_name', 'amount')
 
 class PopulatedSplitSerializer(serializers.ModelSerializer):
 
